@@ -1,0 +1,211 @@
+.ensayo-page {
+  overflow: hidden;
+  background: #ffffff;
+  color: #111111;
+}
+
+.ensayo-page .site-header {
+  z-index: 40;
+  color: #ffffff;
+  mix-blend-mode: difference;
+}
+
+.ensayo-main {
+  min-height: 100vh;
+  padding: 0;
+}
+
+.ensayo-stage {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.ensayo-list {
+  position: fixed;
+  z-index: 30;
+  top: 46.4vh;
+  left: var(--gutter);
+  display: grid;
+  gap: 17px;
+  width: max-content;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ensayo-list button {
+  display: block;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: none;
+}
+
+.ensayo-list button:hover,
+.ensayo-list button:focus-visible,
+.ensayo-list button.is-current {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.ensayo-page.has-active-essay .ensayo-list {
+  color: #ffffff;
+  mix-blend-mode: difference;
+}
+
+.ensayo-page.has-active-essay .ensayo-list button {
+  opacity: 0.24;
+}
+
+.ensayo-page.has-active-essay .ensayo-list button.is-current {
+  opacity: 1;
+}
+
+.ensayo-controls {
+  position: fixed;
+  z-index: 45;
+  top: var(--gutter);
+  left: 50%;
+  display: flex;
+  gap: 13px;
+  align-items: baseline;
+  color: #ffffff;
+  line-height: 1;
+  mix-blend-mode: difference;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.ensayo-controls[hidden],
+.ensayo-scroll[hidden] {
+  display: none;
+}
+
+.ensayo-controls button {
+  cursor: pointer;
+}
+
+.ensayo-controls button:hover,
+.ensayo-controls button:focus-visible,
+.ensayo-controls button.is-current,
+.ensayo-close {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.ensayo-controls__slides {
+  display: flex;
+  gap: 11px;
+  align-items: baseline;
+}
+
+.ensayo-scroll {
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  cursor: grab;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  touch-action: pan-x;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ensayo-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.ensayo-scroll.is-dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.ensayo-track {
+  display: flex;
+  width: max-content;
+  min-width: 100%;
+  height: 100%;
+}
+
+.ensayo-lead-space {
+  flex: 0 0 clamp(304px, 15.9vw, 340px);
+  width: clamp(304px, 15.9vw, 340px);
+  height: 100%;
+}
+
+.ensayo-slide {
+  --slide-width: 35.9vw;
+  --image-position: center center;
+
+  position: relative;
+  flex: 0 0 var(--slide-width);
+  width: var(--slide-width);
+  height: 100vh;
+  height: 100svh;
+  margin: 0;
+  overflow: hidden;
+  background: #eeeeee;
+}
+
+.ensayo-slide img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: var(--image-position);
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.ensayo-text-panel {
+  flex: 0 0 40vw;
+  width: 40vw;
+  min-width: 430px;
+  height: 100vh;
+  height: 100svh;
+  background: #ffffff;
+  color: #111111;
+}
+
+.ensayo-text-panel__copy {
+  position: relative;
+  top: 45.6vh;
+  left: 50%;
+  width: min(34ch, calc(100% - 30px));
+  margin: 0;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 900px) {
+  .ensayo-list {
+    top: 42vh;
+  }
+
+  .ensayo-lead-space {
+    flex-basis: 42vw;
+    width: 42vw;
+  }
+
+  .ensayo-slide {
+    --slide-width: 72vw;
+  }
+
+  .ensayo-text-panel {
+    flex-basis: 78vw;
+    width: 78vw;
+    min-width: 0;
+  }
+
+  .ensayo-controls {
+    top: calc(var(--gutter) + 22px);
+    max-width: calc(100vw - var(--gutter) * 2);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

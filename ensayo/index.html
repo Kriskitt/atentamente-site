@@ -6,9 +6,11 @@
   <meta name="description" content="Essay index by Atentamente.">
   <meta name="theme-color" content="#ffffff">
   <title>Ensayo - Atentamente</title>
+  <link rel="icon" href="data:,">
   <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/ensayo.css">
 </head>
-<body>
+<body class="ensayo-page">
 <header class="site-header" aria-label="Site header">
   <div class="breadcrumbs"><a href="/">Atentamente</a><span aria-hidden="true">/</span><a href="/ensayo/" aria-current="page">Ensayo</a></div>
   <nav class="site-header__nav" aria-label="Primary navigation">
@@ -16,12 +18,25 @@
     <a href="/about/">About</a>
   </nav>
 </header>
-<main class="route-main" id="main">
-  <ul class="foundation-list" aria-label="Ensayo index">
-    <li><a href="/ensayo/" aria-current="page">[ Ensayo 01 ] Forma x Asiel Nunez</a></li>
-    <li><a href="/ensayo/">[ Ensayo 02 ] Secuencia</a></li>
-    <li><a href="/ensayo/">[ Ensayo 03 ] Metal</a></li>
-  </ul>
+<main class="route-main ensayo-main" id="main">
+  <section class="ensayo-stage" aria-label="Ensayo index" data-ensayo>
+    <ol class="ensayo-list" data-ensayo-list>
+      <li><button type="button" data-essay-open="1">[ Ensayo 01 ] Forma x Asiel Núñez</button></li>
+      <li><button type="button" data-essay-open="2">[ Ensayo 02 ] Secuencia</button></li>
+      <li><button type="button" data-essay-open="3">[ Ensayo 03 ] Metal</button></li>
+    </ol>
+
+    <nav class="ensayo-controls" aria-label="Essay gallery controls" data-ensayo-controls hidden>
+      <span class="ensayo-controls__label" data-ensayo-label></span>
+      <span class="ensayo-controls__slides" data-ensayo-slide-list></span>
+      <button class="ensayo-close" type="button" data-ensayo-close>Close X</button>
+    </nav>
+
+    <div class="ensayo-scroll" data-ensayo-scroll tabindex="-1" hidden>
+      <div class="ensayo-track" data-ensayo-track></div>
+    </div>
+  </section>
 </main>
+<script src="/assets/js/ensayo.js"></script>
 </body>
 </html>
