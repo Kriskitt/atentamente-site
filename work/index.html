@@ -6,9 +6,11 @@
   <meta name="description" content="Selected work by Atentamente.">
   <meta name="theme-color" content="#ffffff">
   <title>Work - Atentamente</title>
+  <link rel="icon" href="data:,">
   <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/work.css">
 </head>
-<body>
+<body class="work-page">
 <header class="site-header" aria-label="Site header">
   <div class="breadcrumbs"><a href="/">Atentamente</a><span aria-hidden="true">/</span><a href="/work/" aria-current="page">Work</a></div>
   <nav class="site-header__nav" aria-label="Primary navigation">
@@ -16,12 +18,14 @@
     <a href="/about/">About</a>
   </nav>
 </header>
-<main class="route-main" id="main">
-  <ul class="foundation-list" aria-label="Selected work">
-    <li><a href="/work/" aria-current="page">( 1 ) Clon</a></li>
-    <li><a href="/work/">( 2 ) Project pending</a></li>
-    <li><a href="/work/">( 3 ) Project pending</a></li>
-  </ul>
+<main class="route-main work-main" id="main">
+  <section class="work-index" aria-label="Selected work">
+    <div class="work-gallery" data-work-gallery>
+      <div class="work-track" data-work-track></div>
+    </div>
+  </section>
+  <button class="work-bw-toggle" type="button" aria-pressed="false">B/W</button>
 </main>
+<script src="/assets/js/work.js" defer></script>
 </body>
 </html>

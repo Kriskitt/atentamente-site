@@ -1,0 +1,166 @@
+.work-page {
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.work-main {
+  min-height: 100vh;
+  padding: 0;
+}
+
+.work-index {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.work-gallery {
+  position: absolute;
+  inset: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  cursor: grab;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  touch-action: pan-x;
+  -webkit-overflow-scrolling: touch;
+}
+
+.work-gallery::-webkit-scrollbar {
+  display: none;
+}
+
+.work-gallery.is-dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.work-track {
+  display: flex;
+  width: max-content;
+  min-width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.work-set {
+  display: flex;
+  flex: 0 0 auto;
+  height: 100%;
+}
+
+.work-card {
+  --card-width: clamp(292px, 15.45vw, 594px);
+  --index-top: 34.8vh;
+  --image-offset: 8vh;
+  --frame-height: 21.1vh;
+
+  position: relative;
+  flex: 0 0 var(--card-width);
+  width: var(--card-width);
+  height: 100vh;
+  height: 100svh;
+}
+
+.work-card[data-orientation="portrait"] {
+  --image-offset: 3.2vh;
+  --frame-height: 31.6vh;
+}
+
+.work-card__link {
+  position: absolute;
+  inset: 0;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.44;
+  transition: opacity 160ms linear;
+}
+
+.work-card__link:hover,
+.work-card__link:focus-visible,
+.work-card.is-active .work-card__link {
+  opacity: 1;
+}
+
+.work-card__link:focus-visible {
+  outline: 1px solid #111111;
+  outline-offset: -1px;
+}
+
+.work-card__index {
+  position: absolute;
+  top: var(--index-top);
+  left: 0;
+  width: 100%;
+  text-align: center;
+  pointer-events: none;
+}
+
+.work-card__frame {
+  position: absolute;
+  top: calc(var(--index-top) + var(--image-offset));
+  left: 0;
+  width: 100%;
+  height: var(--frame-height);
+  overflow: hidden;
+}
+
+.work-card__image {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: var(--image-position, 50% 50%);
+  pointer-events: none;
+  user-select: none;
+  transition: filter 180ms linear;
+  -webkit-user-drag: none;
+}
+
+.work-page.is-bw .work-card__image {
+  filter: grayscale(1);
+}
+
+.work-card__title {
+  position: absolute;
+  top: calc(var(--index-top) + var(--image-offset) + var(--frame-height) + 24px);
+  left: 0;
+  width: 100%;
+  visibility: hidden;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms linear, visibility 0s 120ms;
+}
+
+.work-card__link:hover .work-card__title,
+.work-card__link:focus-visible .work-card__title,
+.work-card.is-active .work-card__title {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 120ms linear, visibility 0s;
+}
+
+.work-bw-toggle {
+  position: fixed;
+  z-index: 25;
+  bottom: var(--gutter);
+  left: 50%;
+  cursor: pointer;
+  line-height: 1;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 720px) {
+  .work-card {
+    --card-width: 68vw;
+    --index-top: 33vh;
+  }
+}
