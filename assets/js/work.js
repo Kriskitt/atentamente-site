@@ -12,7 +12,7 @@
       index: 1,
       title: "Mesa",
       slug: "mesa",
-      image: "/assets/images/home-atte2.webp",
+      image: "../assets/images/home-atte2.webp",
       width: 2400,
       height: 1080,
       orientation: "landscape"
@@ -21,7 +21,7 @@
       index: 2,
       title: "Clon",
       slug: "clon",
-      image: "/assets/images/work-clon.webp",
+      image: "../assets/images/work-clon.webp",
       width: 2048,
       height: 2560,
       orientation: "portrait",
@@ -31,7 +31,7 @@
       index: 3,
       title: "Luz",
       slug: "luz",
-      image: "/assets/images/home-atte2.webp",
+      image: "../assets/images/home-atte2.webp",
       width: 2400,
       height: 1080,
       orientation: "landscape"
@@ -40,7 +40,7 @@
       index: 4,
       title: "Archivo",
       slug: "archivo",
-      image: "/assets/images/work-clon.webp",
+      image: "../assets/images/work-clon.webp",
       width: 2048,
       height: 2560,
       orientation: "portrait",
@@ -50,7 +50,7 @@
       index: 5,
       title: "Turno",
       slug: "turno",
-      image: "/assets/images/home-atte2.webp",
+      image: "../assets/images/home-atte2.webp",
       width: 2400,
       height: 1080,
       orientation: "landscape"
@@ -59,7 +59,7 @@
       index: 6,
       title: "Sala",
       slug: "sala",
-      image: "/assets/images/work-clon.webp",
+      image: "../assets/images/work-clon.webp",
       width: 2048,
       height: 2560,
       orientation: "portrait",
@@ -69,7 +69,7 @@
       index: 7,
       title: "Forma",
       slug: "forma",
-      image: "/assets/images/work-atte3.webp",
+      image: "../assets/images/work-atte3.webp",
       width: 1920,
       height: 1080,
       orientation: "landscape"
@@ -78,7 +78,7 @@
       index: 8,
       title: "Ensayo 01",
       slug: "ensayo-01",
-      image: "/assets/images/work-ensayo1-1.webp",
+      image: "../assets/images/work-ensayo1-1.webp",
       width: 678,
       height: 1208,
       orientation: "portrait",
@@ -88,7 +88,7 @@
       index: 9,
       title: "Piedra",
       slug: "piedra",
-      image: "/assets/images/work-atte4.webp",
+      image: "../assets/images/work-atte4.webp",
       width: 2560,
       height: 1440,
       orientation: "landscape"
@@ -97,7 +97,7 @@
       index: 10,
       title: "Secuencia",
       slug: "secuencia",
-      image: "/assets/images/work-ensayo1-2.webp",
+      image: "../assets/images/work-ensayo1-2.webp",
       width: 1054,
       height: 1329,
       orientation: "portrait",
@@ -107,7 +107,7 @@
       index: 11,
       title: "Objeto",
       slug: "objeto",
-      image: "/assets/images/home-atte4.webp",
+      image: "../assets/images/home-atte4.webp",
       width: 471,
       height: 333,
       orientation: "landscape"
@@ -116,7 +116,7 @@
       index: 12,
       title: "Metal",
       slug: "metal",
-      image: "/assets/images/work-ensayo1-3.webp",
+      image: "../assets/images/work-ensayo1-3.webp",
       width: 748,
       height: 919,
       orientation: "portrait",
@@ -126,7 +126,7 @@
       index: 13,
       title: "Contenido",
       slug: "contenido",
-      image: "/assets/images/home-atte5.webp",
+      image: "../assets/images/home-atte5.webp",
       width: 2400,
       height: 1080,
       orientation: "landscape"
@@ -135,7 +135,7 @@
       index: 14,
       title: "Publicacion",
       slug: "publicacion",
-      image: "/assets/images/work-clon.webp",
+      image: "../assets/images/work-clon.webp",
       width: 2048,
       height: 2560,
       orientation: "portrait",
@@ -145,7 +145,7 @@
       index: 15,
       title: "Imagen",
       slug: "imagen",
-      image: "/assets/images/home-atte6.webp",
+      image: "../assets/images/home-atte6.webp",
       width: 2400,
       height: 1080,
       orientation: "landscape"
@@ -176,7 +176,7 @@
 
     const link = document.createElement("a");
     link.className = "work-card__link";
-    link.href = `/work/${project.slug}/`;
+    link.href = `${project.slug}/`;
     link.setAttribute("aria-label", `${project.title}, project ${project.index}`);
     link.dataset.projectSlug = project.slug;
 

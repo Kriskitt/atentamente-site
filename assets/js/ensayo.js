@@ -20,19 +20,19 @@
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       images: [
         {
-          src: "/assets/images/ensayo/forma/03.webp",
+          src: "../assets/images/ensayo/forma/03.webp",
           width: 748,
           height: 919,
           alt: "White sculptural form on dark stone"
         },
         {
-          src: "/assets/images/ensayo/forma/01.webp",
+          src: "../assets/images/ensayo/forma/01.webp",
           width: 678,
           height: 1208,
           alt: "Blue graphic surface detail"
         },
         {
-          src: "/assets/images/ensayo/forma/02.webp",
+          src: "../assets/images/ensayo/forma/02.webp",
           width: 1054,
           height: 1329,
           alt: "White relief object on weathered wood"
@@ -46,21 +46,21 @@
       description: "Secuencia gathers temporary studies of image rhythm, texture, and repetition across a single editorial plane.",
       images: [
         {
-          src: "/assets/images/ensayo/secuencia/01.webp",
+          src: "../assets/images/ensayo/secuencia/01.webp",
           width: 2400,
           height: 1080,
           alt: "Long table with arranged objects",
           position: "center center"
         },
         {
-          src: "/assets/images/ensayo/secuencia/02.webp",
+          src: "../assets/images/ensayo/secuencia/02.webp",
           width: 2400,
           height: 1080,
           alt: "Editorial table composition",
           position: "center center"
         },
         {
-          src: "/assets/images/ensayo/secuencia/03.webp",
+          src: "../assets/images/ensayo/secuencia/03.webp",
           width: 471,
           height: 333,
           alt: "Small landscape study",
@@ -75,21 +75,21 @@
       description: "Metal is a temporary image essay assembled from material, reflection, and restaurant atmosphere studies.",
       images: [
         {
-          src: "/assets/images/ensayo/metal/01.webp",
+          src: "../assets/images/ensayo/metal/01.webp",
           width: 2048,
           height: 2560,
           alt: "Interior wall and seating detail",
           position: "center center"
         },
         {
-          src: "/assets/images/ensayo/metal/02.webp",
+          src: "../assets/images/ensayo/metal/02.webp",
           width: 1920,
           height: 1080,
           alt: "Restaurant table scene",
           position: "center center"
         },
         {
-          src: "/assets/images/ensayo/metal/03.webp",
+          src: "../assets/images/ensayo/metal/03.webp",
           width: 2560,
           height: 1440,
           alt: "Dining room composition",
@@ -120,14 +120,14 @@
   }
 
   function cleanUrl() {
-    return `${window.location.pathname}`;
+    return "./";
   }
 
   function stateUrl(essayId, slide) {
     const params = new URLSearchParams();
     params.set("essay", String(essayId));
     params.set("slide", String(slide));
-    return `${window.location.pathname}?${params.toString()}`;
+    return `?${params.toString()}`;
   }
 
   function clampSlide(essay, slide) {
