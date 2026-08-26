@@ -1,0 +1,245 @@
+@font-face {
+  font-family: "NewEdge";
+  src: url("../fonts/Charlotte Rohde - NewEdge 666 Light Rounded.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Quadrant Text";
+  src: url("../fonts/QuadrantText-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Quadrant Text Mono";
+  src: url("../fonts/QuadrantTextMono-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --paper: #ffffff;
+  --ink: #111111;
+  --muted: rgba(17, 17, 17, 0.56);
+  --gutter: 15px;
+  --interface-size: 11px;
+  --interface-line: 1.15;
+  --text-size: clamp(32px, 4vw, 76px);
+  --mono: "Quadrant Text Mono", "Courier New", monospace;
+  --serif: "Quadrant Text", Georgia, serif;
+  --display: "NewEdge", Georgia, serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: var(--interface-size);
+  line-height: var(--interface-line);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: var(--interface-size);
+  line-height: var(--interface-line);
+  font-weight: 400;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+img,
+picture,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a,
+button {
+  color: inherit;
+  font: inherit;
+}
+
+a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+button {
+  appearance: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.site-shell {
+  min-height: 100vh;
+  padding: var(--gutter);
+}
+
+.site-header {
+  position: fixed;
+  z-index: 20;
+  top: var(--gutter);
+  right: var(--gutter);
+  left: var(--gutter);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 24px;
+  pointer-events: none;
+}
+
+.site-header a,
+.site-header button {
+  pointer-events: auto;
+}
+
+.site-header__brand,
+.site-header__nav,
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.45em;
+}
+
+.site-header__brand {
+  min-width: 0;
+}
+
+.site-header__nav {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.site-header a {
+  text-decoration: none;
+}
+
+.site-header a:hover,
+.site-header a[aria-current="page"] {
+  text-decoration: underline;
+}
+
+.route-main {
+  min-height: 100vh;
+  padding: calc(var(--gutter) + 52px) var(--gutter) var(--gutter);
+}
+
+.foundation-panel {
+  position: fixed;
+  right: var(--gutter);
+  bottom: var(--gutter);
+  left: var(--gutter);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: end;
+}
+
+.foundation-title {
+  max-width: min(76ch, 72vw);
+  margin: 0;
+  font-family: var(--serif);
+  font-size: var(--text-size);
+  line-height: 0.98;
+  font-weight: 400;
+}
+
+.foundation-kicker {
+  margin: 0;
+  color: var(--muted);
+}
+
+.foundation-list {
+  position: fixed;
+  left: var(--gutter);
+  bottom: 36vh;
+  display: grid;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.foundation-list a {
+  text-decoration: none;
+}
+
+.foundation-list a:hover,
+.foundation-list a:focus-visible {
+  text-decoration: underline;
+}
+
+.about-mark {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #000000;
+  color: #ffffff;
+}
+
+.about-mark + .site-header {
+  color: #ffffff;
+}
+
+.about-mark__word {
+  margin: 0;
+  font-family: var(--display);
+  font-size: min(19vw, 260px);
+  line-height: 0.82;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.about-copy {
+  position: fixed;
+  right: var(--gutter);
+  bottom: var(--gutter);
+  left: var(--gutter);
+  margin: 0;
+  color: #ffffff;
+  font-family: var(--serif);
+  font-size: clamp(30px, 3.6vw, 72px);
+  line-height: 0.98;
+}
+
+@media (max-width: 720px) {
+  .site-header {
+    gap: 12px;
+  }
+
+  .route-main {
+    padding-top: calc(var(--gutter) + 72px);
+  }
+
+  .foundation-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .foundation-title {
+    max-width: 100%;
+  }
+}
