@@ -4,14 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="description" content="About Atentamente.">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#000000">
   <title>About - Atentamente</title>
+  <link rel="icon" href="data:,">
   <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/about.css">
 </head>
-<body>
-<div class="about-mark" aria-hidden="true">
-  <p class="about-mark__word">Atentamente</p>
-</div>
+<body class="about-page is-bw">
 <header class="site-header" aria-label="Site header">
   <div class="breadcrumbs"><a href="/">Atentamente</a><span aria-hidden="true">/</span><a href="/about/" aria-current="page">About</a></div>
   <nav class="site-header__nav" aria-label="Primary navigation">
@@ -19,8 +18,18 @@
     <a href="/ensayo/">Ensayo</a>
   </nav>
 </header>
-<main class="route-main" id="main">
-  <p class="about-copy">Belen Valverde + Qenqo. Creative duo.</p>
+<main class="about-main" id="main">
+  <div class="about-title-stage" aria-hidden="true">
+    <span id="about-scaled-text" class="about-scaled-text">A<br>t<br>e<br>n<br>t<br>a<br>m<br>e<br>n<br>t<br>e</span>
+  </div>
+
+  <p class="about-studio about-studio--left">Belén Valverde + Qenqo</p>
+  <p class="about-studio about-studio--right">Creative Duo</p>
+
+  <p class="about-statement">Each project pursued by the studio, be that a book, an identity, film, exhibition or installation, grows out of a process of conceptually rigorous investigation, with Knight and McGrath attending closely to both the formal properties and the contextual nexus within which the project participates. A project is thus a proposition, a means to interrogate beliefs, procedures, behavioural, temporal and material realities, and (re)consider what it means to be in the world, and work together.</p>
+
+  <button class="about-bw-toggle" type="button" aria-pressed="true" data-about-bw-toggle>B/W</button>
 </main>
+<script src="/assets/js/about.js"></script>
 </body>
 </html>

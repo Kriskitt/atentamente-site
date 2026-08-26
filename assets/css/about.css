@@ -1,0 +1,138 @@
+@font-face {
+  font-family: "Generation Mono";
+  src: url("../fonts/generation-mono.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.about-page {
+  overflow: hidden;
+  background: #ffffff;
+  color: #111111;
+}
+
+.about-page.is-bw {
+  background: #000000;
+  color: #ffffff;
+}
+
+.about-page .site-header {
+  z-index: 40;
+  color: #ffffff;
+  mix-blend-mode: difference;
+}
+
+.about-main {
+  min-height: 100vh;
+  padding: 0;
+  background: #000000;
+}
+
+.about-title-stage {
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+  display: grid;
+  overflow: hidden;
+  color: #ffffff;
+  pointer-events: none;
+  place-items: center;
+}
+
+.about-scaled-text {
+  display: inline-block;
+  color: #ffffff;
+  font-family: "Generation Mono", monospace;
+  font-size: clamp(96px, 6.25vw, 146px);
+  font-weight: 700;
+  line-height: 0.82;
+  text-align: center;
+  text-transform: uppercase;
+  transform: scaleX(1);
+  transform-origin: center center;
+  user-select: none;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.about-studio,
+.about-statement,
+.about-bw-toggle {
+  position: fixed;
+  z-index: 30;
+  margin: 0;
+  color: #ffffff;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 400;
+  mix-blend-mode: difference;
+}
+
+.about-studio {
+  top: 40.9vh;
+  font-size: 30px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.about-studio--left {
+  left: var(--gutter);
+}
+
+.about-studio--right {
+  right: var(--gutter);
+}
+
+.about-statement {
+  right: var(--gutter);
+  top: 63.7vh;
+  left: var(--gutter);
+  font-size: clamp(48px, 3.35vw, 74px);
+  line-height: 0.76;
+}
+
+.about-bw-toggle {
+  bottom: var(--gutter);
+  left: 50%;
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: var(--interface-size);
+  line-height: 1;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transform: translateX(-50%);
+}
+
+.about-page:not(.is-bw) .about-main {
+  background: #ffffff;
+}
+
+.about-page:not(.is-bw) .about-title-stage,
+.about-page:not(.is-bw) .about-scaled-text,
+.about-page:not(.is-bw) .about-studio,
+.about-page:not(.is-bw) .about-statement,
+.about-page:not(.is-bw) .about-bw-toggle {
+  color: #111111;
+}
+
+@media (max-width: 720px) {
+  .about-scaled-text {
+    font-size: clamp(86px, 22vw, 132px);
+  }
+
+  .about-studio {
+    font-size: 30px;
+  }
+
+  .about-studio--right {
+    top: 47vh;
+    right: auto;
+    left: var(--gutter);
+  }
+
+  .about-statement {
+    font-size: clamp(38px, 12vw, 54px);
+    line-height: 0.84;
+  }
+}
