@@ -337,9 +337,14 @@
     const link = event.target.closest(".work-card__link");
     if (!link) return;
 
-    event.preventDefault();
+    if (performance.now() < ignoreClickUntil) {
+      event.preventDefault();
+      return;
+    }
 
-    if (performance.now() < ignoreClickUntil) return;
+    if (link.dataset.projectSlug === "clon") return;
+
+    event.preventDefault();
 
     setActiveCard(link.closest(".work-card"));
   });

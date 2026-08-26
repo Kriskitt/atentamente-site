@@ -18,13 +18,13 @@
     <a href="/about/">About</a>
   </nav>
 </header>
-<nav class="home-slider-nav" aria-label="Project images">
-  <button class="home-nav-button prev" type="button" aria-label="Previous image">&lt;</button>
-  <span class="home-counter" aria-live="polite">001 / 006</span>
-  <button class="home-nav-button next" type="button" aria-label="Next image">&gt;</button>
-</nav>
 <main class="route-main home-main" id="main">
   <section class="home-stage" id="home-slider" aria-label="Image gallery" data-home-slider>
+    <nav class="home-slider-nav" aria-label="Project images">
+      <button class="home-nav-button prev" type="button" aria-label="Previous image">&lt;</button>
+      <span class="home-counter" aria-live="polite">001 / 006</span>
+      <button class="home-nav-button next" type="button" aria-label="Next image">&gt;</button>
+    </nav>
     <div class="home-layer home-layer-a" aria-hidden="false">
       <div class="home-media-shell">
         <img src="/assets/images/home-atte1.webp" width="2400" height="1080" alt="Atentamente project image on a wooden table">
@@ -39,14 +39,9 @@
     <button class="home-hit-area prev" type="button" aria-label="Previous image"></button>
     <button class="home-hit-area next" type="button" aria-label="Next image"></button>
     <div class="home-transition-edge" aria-hidden="true"></div>
+    <div class="home-cursor" aria-hidden="true">&gt;</div>
+    <p class="sr-only" id="home-slider-status" aria-live="polite"></p>
   </section>
-  <footer class="home-project-meta" aria-label="Atentamente summary">
-    <div class="home-project-title">Graphic design duo offering a unique approach to visual communication with a particular eye for high craft,</div>
-    <div class="home-project-year">2026</div>
-  </footer>
-  <button class="home-bw-toggle" type="button" aria-pressed="false">B/W</button>
-  <div class="home-cursor" aria-hidden="true">&gt;</div>
-  <p class="sr-only" id="home-slider-status" aria-live="polite"></p>
 </main>
 <script src="/assets/js/home-slider.js" defer></script>
 </body>

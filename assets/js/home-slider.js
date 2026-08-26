@@ -38,7 +38,6 @@
   const counter = document.querySelector(".home-counter");
   const status = document.querySelector("#home-slider-status");
   const cursor = document.querySelector(".home-cursor");
-  const bwToggle = document.querySelector(".home-bw-toggle");
 
   let index = 0;
   let activeLayer = 0;
@@ -200,11 +199,6 @@
       cursor.style.opacity = "0";
     });
   }
-
-  bwToggle.addEventListener("click", () => {
-    const enabled = document.body.classList.toggle("is-bw");
-    bwToggle.setAttribute("aria-pressed", String(enabled));
-  });
 
   updateCounter();
 })();
