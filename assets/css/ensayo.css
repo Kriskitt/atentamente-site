@@ -149,6 +149,9 @@
   margin: 0;
   overflow: hidden;
   background: #eeeeee;
+  border: white;
+  border-style: solid;
+  border-width: 0px 1px 0px 1px;
 }
 
 .ensayo-slide img {
