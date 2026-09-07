@@ -6,7 +6,7 @@
 
   if (textElement) {
     const minScale = 1;
-    const maxScale = 70.2;
+    const maxScale = 30.3;
     let lastPointerX = null;
 
     function applyScale(clientX) {
