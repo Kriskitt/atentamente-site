@@ -4,7 +4,7 @@
   const textElement = document.getElementById("about-scaled-text");
 
   if (textElement) {
-    const minScale = 2.2;
+    const minScale = 1;
     const maxScale = 30.3;
     let lastPointerX = null;
 

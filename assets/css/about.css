@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "Generation Mono";
+  src: url("../fonts/Generation_Mono/generation-mono.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 .about-page {
   background:var(--paper);
   color:var(--ink)
@@ -26,13 +34,13 @@
   display:inline-block;
   margin-top:-15px;
   color:var(--ink);
-  font-family:var(--display);
+  font-family:"Generation Mono", monospace;
   font-size:clamp(96px,6.25vw,146px);
   font-weight:400;
   line-height:.66;
   text-align:center;
   text-transform:uppercase;
-  transform:scaleX(2.2);
+  transform:scaleX(1);
   transform-origin:center center;
   user-select:none;
   white-space:nowrap;

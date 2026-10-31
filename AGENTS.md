@@ -12,7 +12,7 @@ This is the static production website. Work on `main` only when the user authori
 - Actions `/actions/`
 - About `/about/`
 
-Use only Archivo Black and Times Newer Roman. Archivo Black is for the fixed `Atentamente` header brand and the interactive About wordmark. Times Newer Roman Regular is for the interface, navigation, counters, and editorial text. Use the actual Times Newer Roman Italic font file for italic text. Keep the desktop gutter at 15px.
+Use Archivo Black for the fixed `Atentamente` header brand. Use Generation Mono only for the interactive About wordmark. Times Newer Roman Regular is for the interface, navigation, counters, and editorial text. Use the actual Times Newer Roman Italic font file for italic text. Keep the desktop gutter at 15px.
 
 The fixed header has no opaque background. It uses `mix-blend-mode: difference`. The left side contains only the brand. The right navigation reads `Work,  Actions,  About`, with two spaces after each comma. Keep the active link in place and underline it. Do not add breadcrumb navigation, pills, shadows, borders, or a desktop hamburger menu.
 
@@ -30,7 +30,7 @@ Work projects reuse `assets/js/project-gallery.js`. Preserve native horizontal s
 
 ## About
 
-About defaults to a black composition and scrolls vertically. Preserve the existing pointer-driven ScaleX behavior for the large central `ATENTAMENTE` wordmark. The top labels and main statement use Times Newer Roman Regular at 30pt with the approved copy. Below them, keep four 14pt columns: selected projects/clients, services, team/contact, and recognitions/talks. Keep the authored contact links functional: mailto email, direct WhatsApp number without prefilled text, and Instagram. Leave enough bottom space above the fixed footer.
+About defaults to a black composition and scrolls vertically. Use `assets/fonts/Generation_Mono/generation-mono.otf` for the large central `ATENTAMENTE` wordmark while preserving its pointer-driven ScaleX behavior. The top labels and main statement use Times Newer Roman Regular at 30pt with the approved copy. Below them, keep four 14pt columns: selected projects/clients, services, team/contact, and recognitions/talks. Keep the authored contact links functional: mailto email, direct WhatsApp number without prefilled text, and Instagram. Leave enough bottom space above the fixed footer.
 
 ## Actions
 
