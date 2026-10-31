@@ -12,15 +12,10 @@
 </head>
 <body class="project-page">
 <header class="site-header project-header" aria-label="Site header">
-  <div class="breadcrumbs project-header__breadcrumbs">
-    <a href="../../">Atentamente</a><span aria-hidden="true">/</span>
-    <a href="../">Work</a><span aria-hidden="true">/</span>
-    <a href="./" aria-current="page">Clon</a>
-  </div>
-  <p class="project-header__summary">Clon is a contemporary restaurant known for its creative, elegant atmosphere, and carefully crafted dishes.</p>
-  <nav class="site-header__nav project-header__nav" aria-label="Primary navigation">
-    <a href="../../ensayo/">Ensayo</a><span aria-hidden="true">,</span>
-    <a href="../../about/">About</a>
+  <a class="site-header__brand" href="../../">Atentamente</a>
+  <p class="project-header__summary">Clon is a contemporary restaurant known for its creative, elegant atmosphere, and carefully crafted dishes. It offers a modern dining experience where quality ingredients and thoughtful presentation come together.</p>
+  <nav class="site-header__nav" aria-label="Primary navigation">
+    <a href="../" aria-current="page">Work</a><span aria-hidden="true">,  </span><a href="../../actions/">Actions</a><span aria-hidden="true">,  </span><a href="../../about/">About</a>
   </nav>
 </header>
 <main class="route-main project-main" id="main">
@@ -29,7 +24,7 @@
       <button class="project-slide" type="button" style="--closed-width: 38.8vw; --image-position: center center;" aria-label="Expand image 1" aria-pressed="false">
         <img src="../../assets/images/projects/clon/atte1.webp" width="2048" height="2560" alt="Clon project photograph 1" draggable="false">
       </button>
-      <button class="project-slide is-expanded" type="button" style="--closed-width: 45.2vw; --image-position: center center;" aria-label="Collapse image 2" aria-pressed="true">
+      <button class="project-slide" type="button" style="--closed-width: 45.2vw; --image-position: center center;" aria-label="Expand image 2" aria-pressed="false">
         <img src="../../assets/images/projects/clon/atte2.webp" width="2400" height="1080" alt="Clon project photograph 2" draggable="false">
       </button>
       <button class="project-slide" type="button" style="--closed-width: 32vw; --image-position: center center;" aria-label="Expand image 3" aria-pressed="false">
@@ -40,8 +35,12 @@
       </button>
     </div>
   </section>
-  <button class="project-bw-toggle" type="button" aria-pressed="false">B/W</button>
 </main>
+<footer class="site-footer" aria-label="Site footer">
+  <button class="site-footer__polarity" type="button" data-polarity-toggle aria-label="Toggle black and white interface" aria-pressed="false">B/N</button>
+  <span class="site-footer__language" data-language-control aria-label="Language options, not yet available">ES/EN</span>
+</footer>
 <script src="../../assets/js/project-gallery.js" defer></script>
+<script src="../../assets/js/global.js" defer></script>
 </body>
 </html>

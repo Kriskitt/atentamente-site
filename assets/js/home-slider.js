@@ -6,29 +6,32 @@
 
   const images = [
     {
-      src: "assets/images/home-atte1.webp",
+      src: "assets/rsc/home/home-atte1.webp",
       alt: "Atentamente project image on a wooden table"
     },
     {
-      src: "assets/images/home-atte2.webp",
+      src: "assets/rsc/home/home-atte2.webp",
       alt: "Atentamente project detail image"
     },
     {
-      src: "assets/images/home-atte3.webp",
+      src: "assets/rsc/home/home-atte3.webp",
       alt: "Atentamente printed project detail"
     },
     {
-      src: "assets/images/home-atte4.webp",
+      src: "assets/rsc/home/home-atte4.webp",
       alt: "Atentamente project image"
     },
     {
-      src: "assets/images/home-atte5.webp",
+      src: "assets/rsc/home/home-atte5.webp",
       alt: "Atentamente publication spread"
     },
     {
-      src: "assets/images/home-atte6.webp",
+      src: "assets/rsc/home/home-atte6.webp",
       alt: "Atentamente project documentation"
-    }
+    },
+    { src: "assets/rsc/home/home-atte7.webp", alt: "Atentamente project image 7" },
+    { src: "assets/rsc/home/home-atte8.webp", alt: "Atentamente project image 8" },
+    { src: "assets/rsc/home/home-atte9.webp", alt: "Atentamente project image 9" }
   ];
 
   const layers = [

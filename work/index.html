@@ -12,10 +12,9 @@
 </head>
 <body class="work-page">
 <header class="site-header" aria-label="Site header">
-  <div class="breadcrumbs"><a href="../">Atentamente</a><span aria-hidden="true">/</span><a href="./" aria-current="page">Work</a></div>
+  <a class="site-header__brand" href="../">Atentamente</a>
   <nav class="site-header__nav" aria-label="Primary navigation">
-    <a href="../ensayo/">Ensayo</a><span aria-hidden="true">,</span>
-    <a href="../about/">About</a>
+    <a href="./" aria-current="page">Work</a><span aria-hidden="true">,  </span><a href="../actions/">Actions</a><span aria-hidden="true">,  </span><a href="../about/">About</a>
   </nav>
 </header>
 <main class="route-main work-main" id="main">
@@ -24,8 +23,12 @@
       <div class="work-track" data-work-track></div>
     </div>
   </section>
-  <button class="work-bw-toggle" type="button" aria-pressed="false">B/W</button>
 </main>
+<footer class="site-footer" aria-label="Site footer">
+  <button class="site-footer__polarity" type="button" data-polarity-toggle aria-label="Toggle black and white interface" aria-pressed="false">B/N</button>
+  <span class="site-footer__language" data-language-control aria-label="Language options, not yet available">ES/EN</span>
+</footer>
 <script src="../assets/js/work.js" defer></script>
+<script src="../assets/js/global.js" defer></script>
 </body>
 </html>

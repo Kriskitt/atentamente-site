@@ -1,0 +1,108 @@
+.actions-page {
+  background:var(--paper);
+  color:var(--ink)
+}
+.actions-main {
+  min-height:100vh;
+  padding:0 var(--gutter) 90px
+}
+.actions-intro {
+  position:relative;
+  z-index:1;
+  padding-top:15px;
+  text-align:center
+}
+.actions-tabs {
+  display:flex;
+  justify-content:center;
+  gap:.48em;
+  white-space:nowrap
+}
+.actions-tab {
+  min-width:2.5em;
+  line-height:1.1
+}
+.actions-tab[aria-selected="true"] {
+  min-width:4em
+}
+.actions-tab:hover,.actions-tab:focus-visible {
+  text-decoration:underline
+}
+.actions-subtitle {
+  margin:4px 0 0;
+  font-style:italic
+}
+.actions-collections {
+  padding:22px 40px 0
+}
+.actions-grid {
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  column-gap:4vw;
+  row-gap:48px;
+  margin:0 0 48px
+}
+.actions-item {
+  display:block;
+  align-self:start;
+  width:100%;
+  text-align:left
+}
+.actions-item:nth-child(5n + 1) {
+  margin-top:90px
+}
+.actions-item:nth-child(5n + 2) {
+  margin-top:0
+}
+.actions-item:nth-child(5n + 3) {
+  margin-top:0
+}
+.actions-item:nth-child(5n + 4) {
+  margin-top:70px
+}
+.actions-item:nth-child(5n + 5) {
+  margin-top:0
+}
+.actions-item img {
+  display:block;
+  width:100%;
+  height:auto;
+  max-width:none
+}
+.actions-item:hover img,.actions-item:focus-visible img {
+  outline:1px solid currentColor;
+  outline-offset:3px
+}
+.actions-overlay {
+  position:fixed;
+  z-index:100;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:rgba(255,255,255,.96);
+  color:#111
+}
+.actions-overlay[hidden] {
+  display:none
+}
+.actions-overlay__close {
+  position:absolute;
+  z-index:2;
+  top:15px;
+  left:50%;
+  transform:translateX(-50%);
+  white-space:nowrap
+}
+.actions-overlay__close:hover,.actions-overlay__close:focus-visible {
+  text-decoration:underline
+}
+.actions-overlay__image {
+  display:block;
+  max-width:min(70vw,640px);
+  max-height:calc(100dvh - 80px);
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  pointer-events:auto
+}

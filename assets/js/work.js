@@ -3,7 +3,6 @@
 
   const gallery = document.querySelector("[data-work-gallery]");
   const track = document.querySelector("[data-work-track]");
-  const bwToggle = document.querySelector(".work-bw-toggle");
 
   if (!gallery || !track) return;
 
@@ -76,9 +75,9 @@
     },
     {
       index: 8,
-      title: "Ensayo 01",
-      slug: "ensayo-01",
-      image: "../assets/images/work-ensayo1-1.webp",
+      title: "Action 01",
+      slug: "action-01",
+      image: "../assets/images/action-blue.webp",
       width: 678,
       height: 1208,
       orientation: "portrait",
@@ -97,7 +96,7 @@
       index: 10,
       title: "Secuencia",
       slug: "secuencia",
-      image: "../assets/images/work-ensayo1-2.webp",
+      image: "../assets/images/action-relief.webp",
       width: 1054,
       height: 1329,
       orientation: "portrait",
@@ -116,7 +115,7 @@
       index: 12,
       title: "Metal",
       slug: "metal",
-      image: "../assets/images/work-ensayo1-3.webp",
+      image: "../assets/images/action-white.webp",
       width: 748,
       height: 919,
       orientation: "portrait",
@@ -362,11 +361,6 @@
 
   window.addEventListener("resize", () => {
     window.requestAnimationFrame(measureAndCenter);
-  });
-
-  bwToggle.addEventListener("click", () => {
-    const enabled = document.body.classList.toggle("is-bw");
-    bwToggle.setAttribute("aria-pressed", String(enabled));
   });
 
   renderProjects();

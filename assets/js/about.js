@@ -2,10 +2,9 @@
   "use strict";
 
   const textElement = document.getElementById("about-scaled-text");
-  const bwToggle = document.querySelector("[data-about-bw-toggle]");
 
   if (textElement) {
-    const minScale = 1;
+    const minScale = 2.2;
     const maxScale = 30.3;
     let lastPointerX = null;
 
@@ -29,10 +28,4 @@
     });
   }
 
-  if (bwToggle) {
-    bwToggle.addEventListener("click", () => {
-      const enabled = document.body.classList.toggle("is-bw");
-      bwToggle.setAttribute("aria-pressed", String(enabled));
-    });
-  }
 })();

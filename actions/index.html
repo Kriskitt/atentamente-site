@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Actions by Atentamente.">
+  <meta name="theme-color" content="#ffffff">
+  <title>Actions - Atentamente</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/actions.css">
+</head>
+<body class="actions-page">
+<header class="site-header" aria-label="Site header">
+  <a class="site-header__brand" href="../">Atentamente</a>
+  <nav class="site-header__nav" aria-label="Primary navigation">
+    <a href="../work/">Work</a><span aria-hidden="true">,  </span><a href="./" aria-current="page">Actions</a><span aria-hidden="true">,  </span><a href="../about/">About</a>
+  </nav>
+</header>
+<main class="actions-main" id="main">
+  <section class="actions-intro" aria-label="Action categories">
+    <div class="actions-tabs" role="tablist" aria-label="Action collections" data-actions-tabs></div>
+    <p class="actions-subtitle" data-actions-subtitle>Random - Discarded proposals</p>
+  </section>
+  <section class="actions-collections" role="tabpanel" aria-label="Action images" data-actions-collections></section>
+</main>
+<footer class="site-footer" aria-label="Site footer">
+  <button class="site-footer__polarity" type="button" data-polarity-toggle aria-label="Toggle black and white interface" aria-pressed="false">B/N</button>
+  <span class="site-footer__language" data-language-control aria-label="Language options, not yet available">ES/EN</span>
+</footer>
+<div class="actions-overlay" role="dialog" aria-modal="true" aria-label="Action image" data-actions-overlay hidden>
+  <button class="actions-overlay__close" type="button" data-actions-close>Close [X]</button>
+  <img class="actions-overlay__image" alt="" data-actions-image>
+</div>
+<script src="../assets/js/actions.js" defer></script>
+<script src="../assets/js/global.js" defer></script>
+</body>
+</html>

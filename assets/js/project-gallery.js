@@ -7,7 +7,7 @@
 
     if (!track || slides.length === 0) return;
 
-    let expandedSlide = slides.find(slide => slide.classList.contains("is-expanded")) || null;
+    let expandedSlide = null;
     let pointerIsDown = false;
     let isDragging = false;
     let pointerId = null;
@@ -168,12 +168,7 @@
       }
     });
 
-    if (expandedSlide) {
-      track.classList.add("has-expanded");
-      slides.forEach(slide => updateSlideLabel(slide, slide === expandedSlide));
-    } else {
-      slides.forEach(slide => updateSlideLabel(slide, false));
-    }
+    collapseAllSlides();
 
     window.addEventListener("resize", () => {
       window.requestAnimationFrame(alignInitialSlide);
@@ -184,10 +179,4 @@
 
   document.querySelectorAll("[data-project-gallery]").forEach(initProjectGallery);
 
-  document.querySelectorAll(".project-bw-toggle").forEach(button => {
-    button.addEventListener("click", () => {
-      const enabled = document.body.classList.toggle("is-bw");
-      button.setAttribute("aria-pressed", String(enabled));
-    });
-  });
 })();
