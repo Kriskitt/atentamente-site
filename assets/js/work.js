@@ -11,9 +11,9 @@
       index: 1,
       title: "Mesa",
       slug: "mesa",
-      image: "../assets/images/home-atte2.webp",
-      width: 2400,
-      height: 1080,
+      image: "../assets/rsc/home/desktop-tablet/home-atte1.webp",
+      width: 2560,
+      height: 1440,
       orientation: "landscape"
     },
     {
@@ -30,9 +30,9 @@
       index: 3,
       title: "Luz",
       slug: "luz",
-      image: "../assets/images/home-atte2.webp",
-      width: 2400,
-      height: 1080,
+      image: "../assets/rsc/home/desktop-tablet/home-atte1.webp",
+      width: 2560,
+      height: 1440,
       orientation: "landscape"
     },
     {
@@ -49,9 +49,9 @@
       index: 5,
       title: "Turno",
       slug: "turno",
-      image: "../assets/images/home-atte2.webp",
-      width: 2400,
-      height: 1080,
+      image: "../assets/rsc/home/desktop-tablet/home-atte1.webp",
+      width: 2560,
+      height: 1440,
       orientation: "landscape"
     },
     {
@@ -152,6 +152,8 @@
   ];
 
   const setCount = 3;
+  const mobileQuery = matchMedia("(max-width: 440px)");
+  let mobileMode = mobileQuery.matches;
   let setWidth = 0;
   let ignoreClickUntil = 0;
   let pointerIsDown = false;
@@ -194,7 +196,7 @@
     image.height = project.height;
     image.decoding = "async";
     image.draggable = false;
-    image.loading = setIndex === 1 ? "eager" : "lazy";
+    image.loading = mobileMode || setIndex !== 1 ? "lazy" : "eager";
 
     const title = document.createElement("span");
     title.className = "work-card__title";
@@ -210,7 +212,7 @@
   function renderProjects() {
     const fragment = document.createDocumentFragment();
 
-    for (let setIndex = 0; setIndex < setCount; setIndex += 1) {
+    for (let setIndex = 0; setIndex < (mobileMode ? 1 : setCount); setIndex += 1) {
       const set = document.createElement("div");
       set.className = "work-set";
       set.dataset.cloneSet = String(setIndex);
@@ -226,13 +228,14 @@
   }
 
   function measureAndCenter() {
+    if (mobileMode) { setWidth = 0; gallery.scrollLeft = 0; return; }
     setWidth = track.scrollWidth / setCount;
     gallery.scrollLeft = setWidth;
   }
 
   function recenterIfNeeded() {
     recenterFrame = null;
-    if (!setWidth) return;
+    if (mobileMode || !setWidth) return;
 
     const lower = setWidth * 0.5;
     const upper = setWidth * 1.5;
@@ -260,9 +263,10 @@
     if (card) card.classList.add("is-active");
   }
 
-  gallery.addEventListener("scroll", requestRecenter, { passive: true });
+  gallery.addEventListener("scroll", () => { if (!mobileMode) requestRecenter(); }, { passive: true });
 
   gallery.addEventListener("wheel", event => {
+    if (mobileMode) return;
     const isMostlyVertical = Math.abs(event.deltaY) > Math.abs(event.deltaX);
 
     if (!isMostlyVertical) return;
@@ -273,7 +277,7 @@
   }, { passive: false });
 
   gallery.addEventListener("pointerdown", event => {
-    if (event.pointerType !== "mouse" || event.button !== 0) return;
+    if (mobileMode || event.pointerType !== "mouse" || event.button !== 0) return;
 
     pointerIsDown = true;
     isDragging = false;
@@ -342,6 +346,7 @@
     }
 
     if (link.dataset.projectSlug === "clon") return;
+    if (mobileMode) { event.preventDefault(); return; }
 
     event.preventDefault();
 
@@ -350,16 +355,25 @@
 
   track.addEventListener("pointerenter", event => {
     const card = event.target.closest(".work-card");
-    if (card) setActiveCard(card);
+    if (!mobileMode && innerWidth >= 1033 && card) setActiveCard(card);
   }, true);
 
   track.addEventListener("pointerleave", event => {
-    if (!event.relatedTarget || !track.contains(event.relatedTarget)) {
+    if (innerWidth >= 1033 && (!event.relatedTarget || !track.contains(event.relatedTarget))) {
       setActiveCard(null);
     }
   }, true);
 
   window.addEventListener("resize", () => {
+    if (innerWidth < 1033) setActiveCard(null);
+    const nextMobile = mobileQuery.matches;
+    if (nextMobile !== mobileMode) {
+      mobileMode = nextMobile;
+      track.replaceChildren();
+      setActiveCard(null);
+      renderProjects();
+      if (mobileMode) window.scrollTo(0, 0);
+    }
     window.requestAnimationFrame(measureAndCenter);
   });
 

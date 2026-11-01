@@ -4,35 +4,68 @@
   const stage = document.querySelector("[data-home-slider]");
   if (!stage) return;
 
-  const images = [
-    {
-      src: "assets/rsc/home/home-atte1.webp",
-      alt: "Atentamente project image on a wooden table"
-    },
-    {
-      src: "assets/rsc/home/home-atte2.webp",
-      alt: "Atentamente project detail image"
-    },
-    {
-      src: "assets/rsc/home/home-atte3.webp",
-      alt: "Atentamente printed project detail"
-    },
-    {
-      src: "assets/rsc/home/home-atte4.webp",
-      alt: "Atentamente project image"
-    },
-    {
-      src: "assets/rsc/home/home-atte5.webp",
-      alt: "Atentamente publication spread"
-    },
-    {
-      src: "assets/rsc/home/home-atte6.webp",
-      alt: "Atentamente project documentation"
-    },
-    { src: "assets/rsc/home/home-atte7.webp", alt: "Atentamente project image 7" },
-    { src: "assets/rsc/home/home-atte8.webp", alt: "Atentamente project image 8" },
-    { src: "assets/rsc/home/home-atte9.webp", alt: "Atentamente project image 9" }
+  const descriptions = [
+    "Atentamente project image on a wooden table",
+    "Atentamente project detail", "Atentamente printed project detail",
+    "Atentamente project image", "Atentamente publication spread",
+    "Atentamente project documentation", "Atentamente project image 7",
+    "Atentamente project image 8", "Atentamente project image 9"
   ];
+  const desktopFit = new Set([1, 2, 5, 7, 8]);
+  const mobileVideos = new Set([1, 3]);
+  const mobileQuery = matchMedia("(max-width: 440px)");
+  const preloadedImages = new Map();
+  const media = descriptions.map((alt, index) => {
+    const number = index + 1;
+    return {
+      alt,
+      desktop: { type: "image", src: `assets/rsc/home/desktop-tablet/home-atte${number}.webp`, fit: desktopFit.has(number) ? "cover" : "contain" },
+      mobile: { type: mobileVideos.has(number) ? "video" : "image", src: `assets/rsc/home/mobile/home-atte${number}.${mobileVideos.has(number) ? "webm" : "webp"}`, fit: "cover" }
+    };
+  });
+
+  function populateLayer(layer, slideIndex) {
+    const shell = layer.querySelector(".home-media-shell");
+    shell.querySelector("video")?.pause();
+    const item = media[slideIndex];
+    const source = mobileQuery.matches ? item.mobile : item.desktop;
+    const element = document.createElement(source.type === "video" ? "video" : "img");
+    element.src = source.src;
+    element.style.setProperty("--media-fit", source.fit);
+    if (source.type === "video") {
+      element.autoplay = true;
+      element.muted = true;
+      element.loop = true;
+      element.playsInline = true;
+      element.preload = "metadata";
+      element.setAttribute("aria-label", item.alt);
+      element.play().catch(() => {});
+    } else {
+      element.alt = item.alt;
+      element.decoding = "async";
+      element.draggable = false;
+    }
+    shell.replaceChildren(element);
+  }
+
+  function preloadAdjacentImages(slideIndex) {
+    const needed = new Set();
+    for (const offset of [-1, 1]) {
+      const item = media[(slideIndex + offset + media.length) % media.length];
+      const source = mobileQuery.matches ? item.mobile : item.desktop;
+      if (source.type === "image") needed.add(source.src);
+    }
+    for (const src of preloadedImages.keys()) {
+      if (!needed.has(src)) preloadedImages.delete(src);
+    }
+    for (const src of needed) {
+      if (!preloadedImages.has(src)) {
+        const image = new Image();
+        image.src = src;
+        preloadedImages.set(src, image);
+      }
+    }
+  }
 
   const layers = [
     document.querySelector(".home-layer-a"),
@@ -49,20 +82,15 @@
   let touchStartX = 0;
   let touchStartY = 0;
   let touchStartedAt = 0;
+  let sourceChangePending = false;
 
   const duration = matchMedia("(prefers-reduced-motion: reduce)").matches ? 1 : 650;
   const easing = "cubic-bezier(.77, 0, .175, 1)";
-  const total = String(images.length).padStart(3, "0");
+  const total = String(media.length).padStart(3, "0");
   const format = number => String(number + 1).padStart(3, "0");
 
-  layers[0].querySelector("img").src = images[0].src;
-  layers[0].querySelector("img").alt = images[0].alt;
-  layers[1].querySelector("img").src = images[1].src;
-
-  images.forEach(({ src }) => {
-    const image = new Image();
-    image.src = src;
-  });
+  populateLayer(layers[0], 0);
+  preloadAdjacentImages(0);
 
   function updateCounter() {
     counter.textContent = `${format(index)} / ${total}`;
@@ -72,14 +100,13 @@
     if (animating) return;
     animating = true;
 
-    const nextIndex = (index + direction + images.length) % images.length;
+    const nextIndex = (index + direction + media.length) % media.length;
     const outgoing = layers[activeLayer];
     const incoming = layers[1 - activeLayer];
-    const incomingImg = incoming.querySelector("img");
+
     const forward = direction > 0;
 
-    incomingImg.src = images[nextIndex].src;
-    incomingImg.alt = images[nextIndex].alt;
+    populateLayer(incoming, nextIndex);
     incoming.setAttribute("aria-hidden", "false");
 
     outgoing.style.zIndex = "2";
@@ -126,7 +153,7 @@
     window.setTimeout(() => {
       index = nextIndex;
       updateCounter();
-      status.textContent = `${images[index].alt}, image ${index + 1} of ${images.length}`;
+      status.textContent = `${media[index].alt}, media ${index + 1} of ${media.length}`;
     }, duration * 0.56);
 
     await Promise.all(animations.map(animation => animation.finished.catch(() => {})));
@@ -138,12 +165,17 @@
     incoming.style.transformOrigin = "";
 
     outgoing.setAttribute("aria-hidden", "true");
-    outgoing.querySelector("img").alt = "";
+    outgoing.querySelector("video")?.pause();
     outgoing.style.zIndex = "1";
     incoming.style.zIndex = "2";
 
     activeLayer = 1 - activeLayer;
     animating = false;
+    preloadAdjacentImages(index);
+    if (sourceChangePending) {
+      sourceChangePending = false;
+      populateLayer(layers[activeLayer], index);
+    }
   }
 
   document.querySelectorAll(".home-nav-button.prev, .home-hit-area.prev").forEach(element => {
@@ -192,7 +224,7 @@
   if (matchMedia("(pointer:fine)").matches) {
     stage.addEventListener("pointermove", event => {
       const leftSide = event.clientX < innerWidth / 2;
-      cursor.textContent = leftSide ? "<" : ">";
+      cursor.textContent = leftSide ? "←" : "→";
       cursor.style.left = `${event.clientX}px`;
       cursor.style.top = `${event.clientY}px`;
       cursor.style.opacity = "1";
@@ -202,6 +234,14 @@
       cursor.style.opacity = "0";
     });
   }
+
+  mobileQuery.addEventListener("change", () => {
+    if (animating) { sourceChangePending = true; return; }
+    populateLayer(layers[activeLayer], index);
+    preloadAdjacentImages(index);
+    layers[1 - activeLayer].querySelector("video")?.pause();
+    layers[1 - activeLayer].querySelector(".home-media-shell").replaceChildren();
+  });
 
   updateCounter();
 })();

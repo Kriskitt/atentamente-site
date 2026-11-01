@@ -1,43 +1,35 @@
 # Atentamente Production Repository
 
-This is the static production website. Work on `main` only when the user authorizes it. Use directory-style `index.html` routes and portable document-relative URLs. It must work at repository root, under GitHub Pages project hosting, and on future AWS S3 + CloudFront hosting. Do not introduce frameworks, runtime servers, databases, APIs, server-side routing, or build requirements. Do not reference files outside this repository at runtime.
+This is the static production site. Work on `main` only when the user authorizes it. Preserve existing user changes. Never force-push or rewrite history. `../dev_/` is read-only. Approved visual references are in `../dev_/screens_front/desktop/`, `tablet/`, and `mobile/`; direct user requirements take priority over screenshots, then approved interactions.
 
-`../dev_/` is read-only reference material. Inspect it when useful but never modify it. The approved screenshots are in `../dev_/screens_front/`. New direct user requirements take precedence over screenshots, then approved production interactions. Copy only assets required by production.
+Keep HTML, CSS, and Vanilla JavaScript with directory-style `index.html` routes and document-relative URLs. The site must work at repository root, under GitHub Pages project hosting, and on future AWS S3 + CloudFront hosting. Do not add frameworks, build requirements, servers, databases, APIs, or runtime references outside this repository. Routes: `/`, `/work/`, `/work/clon/`, `/actions/`, `/about/`.
 
-## Routes and interface
+## Responsive system and interface
 
-- Home `/`
-- Work `/work/`
-- Work projects such as `/work/clon/`
-- Actions `/actions/`
-- About `/about/`
+Desktop is at least 1033px; tablet is 441–1032px; mobile is at most 440px. Avoid unrelated breakpoints. Shared CSS belongs in `assets/css/base.css`; page styles belong in page CSS; reusable page interactions belong under `assets/js/`. Do not add a hamburger menu. Global interface sizes are 11px on desktop/tablet and fixed 10px on mobile. Desktop gutter is 15px.
 
-Use Archivo Black for the fixed `Atentamente` header brand. Use Generation Mono only for the interactive About wordmark. Times Newer Roman Regular is for the interface, navigation, counters, and editorial text. Use the actual Times Newer Roman Italic font file for italic text. Keep the desktop gutter at 15px.
+Every page loads dark (black background, white interface), without localStorage persistence. `B/N` switches the interface to white background/black text and back without changing photography or video. Every page starts with `<html lang="es">`. The `EN/ES` control changes only `html.lang` between `es` and `en` and the polarity label between `B/N` and `B/W`; it does not translate copy or persist state. Home has no footer. All other routes have a fixed footer with Archivo Black labels.
 
-The fixed header has no opaque background. It uses `mix-blend-mode: difference`. The left side contains only the brand. The right navigation reads `Work,  Actions,  About`, with two spaces after each comma. Keep the active link in place and underline it. Do not add breadcrumb navigation, pills, shadows, borders, or a desktop hamburger menu.
-
-Every page except Home has a fixed viewport footer: `B/N` on the left, `ES/EN` on the right. `B/N` toggles interface background and text polarity, including About's black default. It must NEVER filter, desaturate, dim, or change photography. `ES/EN` is a semantic hook for future language switching; do not invent translations.
+The fixed header has no opaque background and uses difference blending over media. Brand text is uppercase `ATENTAMENTE` in Archivo Black. Navigation reads `Work,  Actions,  About` with two spaces after commas, also in Archivo Black. Only the active navigation link is underlined; brand and navigation have no hover underline. Keep the active link in place and avoid breadcrumbs, pills, shadows, borders, and desktop hamburger menus. Times Newer Roman Regular is used for counters and editorial text; use the real italic file only where italic is authored.
 
 ## Home
 
-Home contains only the fixed header and two-layer slider, with no footer or supplementary content. Preserve its existing transition, counter, previous/next, looping, keyboard, wheel lock, touch swipe, and custom cursor behavior. Use exactly nine images in numeric filename order from `assets/rsc/home/`. Each image occupies a black 100dvh media container and uses centered `object-fit: contain`, preserving aspect ratio without crop or distortion.
+Preserve the two-layer transition, previous/next, looping, counter, wheel lock, keyboard, touch swipe, and custom cursor. Use nine logical slides in numeric order. Desktop/tablet sources are `assets/rsc/home/desktop-tablet/`; slides 1, 2, 5, 7, 8 use `cover`, while 3, 4, 6, 9 use `contain`. Mobile sources are exclusively `assets/rsc/home/mobile/`, with mobile-specific `cover` fitting by default. Support `.webm` with muted autoplay, loop, playsinline, hidden controls, and pause inactive video. Media stay centered, keep aspect ratio, and occupy a black 100dvh environment. Counter and fine-pointer cursor use `←` and `→`. No footer or supplementary Home content.
 
-## Work and project galleries
+## Work and projects
 
-Preserve Work's finite-clone horizontal loop, drag and wheel movement, spacing, hover title reveal, and project data architecture. Do not add visible carousel arrows or infinitely grow the DOM. Photography must remain unchanged by B/N.
+Desktop Work keeps the finite-clone horizontal loop, drag, wheel, spacing, and hover title behavior. Tablet remains horizontal with all images/titles normally visible and no hover presentation. Mobile renders one canonical vertical list with number left, media center, title right, natural page scroll, and no horizontal drag/wheel. Rebuild cleanly when crossing mobile width.
 
-Work projects reuse `assets/js/project-gallery.js`. Preserve native horizontal scroll, click expansion, 600ms transition and easing, wheel, drag, touch, and Escape collapse. All images start collapsed. Keep the italic project description centered at approximately 50vw independent of the brand and right navigation.
+Project pages reuse `assets/js/project-gallery.js`. Desktop/tablet keep native horizontal scroll, click expansion, wheel, drag, touch, Escape collapse, and 600ms easing. All items start collapsed. Description is Times Newer Roman Regular and centered against the viewport. Support image and `.webm` slides in the same gallery; muted looping videos pause when out of view. Mobile uses vertical natural scroll; expansion stays in flow, approaches usable viewport width, preserves aspect ratio, and has no horizontal drag/wheel.
 
 ## About
 
-About defaults to a black composition and scrolls vertically. Use `assets/fonts/Generation_Mono/generation-mono.otf` for the large central `ATENTAMENTE` wordmark while preserving its pointer-driven ScaleX behavior. The top labels and main statement use Times Newer Roman Regular at 30pt with the approved copy. Below them, keep four 14pt columns: selected projects/clients, services, team/contact, and recognitions/talks. Keep the authored contact links functional: mailto email, direct WhatsApp number without prefilled text, and Instagram. Leave enough bottom space above the fixed footer.
+About is full bleed, dark by default, and vertically scrollable. Preserve the authored `.about-scaled-text` `font-family` and `line-height` exactly; preserve pointer-driven ScaleX. Fit the resting full `ATENTAMENTE` within the stage at every range. The descriptor uses the approved graphic-practice copy, Times Newer Roman Regular, explicit white or black text by polarity, and normal blending. Desktop/tablet descriptor is 30px and body columns 14px; mobile descriptor is 22px and columns 10px. Desktop/tablet have four columns in order: Selected Projects / Clients, Services, Recognitions / Talks / Press, Team / Contact. Mobile uses two columns. The Press entry links to `https://www.underconsideration.com/brandnew/archives/friday_likes_592.php`. Preserve mailto, direct WhatsApp without prefilled text, and Instagram links. Keep content clear of the fixed footer.
 
 ## Actions
 
-Actions replaces the old section completely. Its four data-driven tabs `00`–`03` show the active tab in brackets and a subtitle. Each tab displays a five-column editorial image grid at the desktop reference width. Reuse a randomized source pool during vertical browsing without immediate duplicate neighbors where practical. Recycle/remove distant batches so the DOM stays bounded and scrolling remains continuous. Switching tabs initializes that collection cleanly. Clicking an item opens a 96% white viewport overlay with a full-color, contained image. `Close [X]`, background click, and Escape close it; image click does not. Preserve scroll position and focus on close. The footer remains pinned beneath the overlay.
+Four data-driven tabs `00`–`03` show the active label in brackets. Tab 00 has no description; tabs 01–03 render a description only when authored content exists. Do not invent descriptions. Grid has no side padding. Desktop uses five irregular editorial columns and bounded randomized/recycled infinite browsing. Tablet uses three finite columns; mobile uses one finite column. Reinitialize cleanly across breakpoints. Overlay is black at about 86% opacity and shows contained full-color media. Close [X], Escape, and background click close it; media click navigates canonical items without closing. Navigation does not loop; desktop uses left/right custom `←`/`→` cursor zones, tablet/mobile use left/right taps. Preserve scroll and opener focus on close; prefetch adjacent items where practical. Footer stays pinned beneath overlay.
 
-## Code and validation
+## Validation and hygiene
 
-Keep shared CSS in `assets/css/base.css`, page styles in page-specific CSS, and reusable Vanilla JavaScript under `assets/js/`. Keep Home, Work, project, Actions, and About interactions isolated. Do not begin a responsive redesign without approved references.
-
-After a phase, serve the repository through a local static HTTP server. Verify affected routes and assets, browser console, interactions, desktop visual fidelity, JavaScript syntax, `git diff --check`, and portable links. Runtime HTML/CSS/JS must contain no references to `../dev_/`, `/dev_`, or source screenshots. Do not commit `.DS_Store`, temporary screenshots, browser profiles, validation scripts, caches, logs, unused assets, or secrets. Do not force-push or rewrite history.
+After changes, serve with a local static HTTP server and check routes, assets, console, interactions, syntax, visual references at 1920px, 1032px, 768px, 440px, and 390px, `git diff --check`, and root/nested path portability. Runtime HTML/CSS/JS must not reference `../dev_/`, `/dev_`, or source screenshots. Do not commit `.DS_Store`, temporary screenshots, browser profiles, validation scripts, caches, logs, unused assets, or secrets.

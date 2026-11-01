@@ -1,156 +1,169 @@
 .project-page {
-  overflow: hidden;
-  background: #ffffff;
-  color: #111111;
+  overflow:hidden;
+  background:var(--paper);
+  color:var(--ink)
 }
-
-.project-page.is-bw {
-  background: #000000;
-  color: #ffffff;
-}
-
 .project-main {
-  min-height: 100vh;
-  padding: 0;
+  min-height:100dvh;
+  padding:0
 }
-
-.project-header {
-  z-index: 30;
-  color: #ffffff;
-  mix-blend-mode: difference;
-}
-
 .project-header__summary {
-  position: fixed;
-  top: var(--gutter);
-  left: 50%;
-  width: min(68vw, 1240px);
-  max-width: 100%;
-  margin: 0;
-  overflow-wrap: anywhere;
-  pointer-events: none;
-  text-align: center;
-  font-style: italic;
-  transform: translateX(-50%);
+  position:fixed;
+  top:var(--gutter);
+  left:50%;
+  width:min(68vw,1240px);
+  max-width:100%;
+  margin:0;
+  overflow-wrap:anywhere;
+  pointer-events:none;
+  text-align:center;
+  font-style:normal;
+  transform:translateX(-50%)
 }
-
 .project-gallery {
-  --gallery-top: 98px;
-  --gallery-bottom: 24px;
-  --gallery-gap: 10px;
-  --closed-height: 53.2svh;
-  --expanded-width: 69.8vw;
-  --expand-easing: cubic-bezier(0.76, 0, 0.24, 1);
-  --expand-duration: 600ms;
-
-  position: fixed;
-  z-index: 1;
-  inset: var(--gallery-top) 0 var(--gallery-bottom);
-  overflow-x: auto;
-  overflow-y: hidden;
-  cursor: grab;
-  overscroll-behavior-x: contain;
-  scrollbar-width: none;
-  touch-action: pan-x;
-  -webkit-overflow-scrolling: touch;
+  --gallery-top:98px;
+  --gallery-bottom:24px;
+  --gallery-gap:10px;
+  --closed-height:53.2svh;
+  --expanded-width:69.8vw;
+  --expand-easing:cubic-bezier(.76,0,.24,1);
+  --expand-duration:600ms;
+  position:fixed;
+  z-index:1;
+  inset:var(--gallery-top) 0 var(--gallery-bottom);
+  overflow-x:auto;
+  overflow-y:hidden;
+  cursor:grab;
+  overscroll-behavior-x:contain;
+  scrollbar-width:none;
+  touch-action:pan-x;
+  -webkit-overflow-scrolling:touch
 }
-
 .project-gallery::-webkit-scrollbar {
-  display: none;
+  display:none
 }
-
 .project-gallery.is-dragging {
-  cursor: grabbing;
-  user-select: none;
+  cursor:grabbing;
+  user-select:none
 }
-
 .project-gallery__track {
-  display: flex;
-  align-items: flex-end;
-  gap: var(--gallery-gap);
-  width: max-content;
-  min-width: 100%;
-  height: 100%;
+  display:flex;
+  align-items:flex-end;
+  gap:var(--gallery-gap);
+  width:max-content;
+  min-width:100%;
+  height:100%
 }
-
 .project-slide {
-  --closed-width: 50vw;
-  --image-position: center center;
-
-  position: relative;
-  flex: 0 0 var(--closed-width);
-  width: var(--closed-width);
-  height: var(--closed-height);
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  border: 0;
-  border-radius: 0;
-  outline: 0;
-  background: #e8e8e8;
-  cursor: zoom-in;
-  transition:
-    flex-basis var(--expand-duration) var(--expand-easing),
-    width var(--expand-duration) var(--expand-easing),
-    height var(--expand-duration) var(--expand-easing);
-  will-change: flex-basis, width, height;
+  --closed-width:50vw;
+  --image-position:center center;
+  position:relative;
+  flex:0 0 var(--closed-width);
+  width:var(--closed-width);
+  height:var(--closed-height);
+  margin:0;
+  padding:0;
+  overflow:hidden;
+  border:0;
+  border-radius:0;
+  background:#000;
+  cursor:zoom-in;
+  transition:flex-basis var(--expand-duration) var(--expand-easing),width var(--expand-duration) var(--expand-easing),height var(--expand-duration) var(--expand-easing);
+  will-change:flex-basis,width,height
 }
-
-.project-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  max-width: none;
-  object-fit: cover;
-  object-position: var(--image-position);
-  pointer-events: none;
-  user-select: none;
-  -webkit-user-drag: none;
+.project-slide img,.project-slide video {
+  display:block;
+  width:100%;
+  height:100%;
+  max-width:none;
+  object-fit:cover;
+  object-position:var(--image-position);
+  pointer-events:none;
+  user-select:none;
+  -webkit-user-drag:none
 }
-
 .project-slide:focus-visible {
-  outline: 1px solid #111111;
-  outline-offset: -1px;
+  outline:1px solid currentColor;
+  outline-offset:-1px
 }
-
 .project-slide.is-expanded {
-  flex-basis: var(--expanded-width);
-  width: var(--expanded-width);
-  height: calc(100svh - var(--gallery-top) - var(--gallery-bottom));
-  cursor: zoom-out;
+  flex-basis:var(--expanded-width);
+  width:var(--expanded-width);
+  height:calc(100svh - var(--gallery-top) - var(--gallery-bottom));
+  cursor:zoom-out
 }
-
-.project-gallery__track.has-expanded .project-slide:not(.is-expanded) {
-  opacity: 1;
-  transform: none;
-}
-
-@media (max-width: 900px) {
+@media(max-width:1032px) {
   .project-header__summary {
-    top: calc(var(--gutter) + 24px);
-    width: calc(100vw - var(--gutter) * 2);
+    width:min(54vw,550px)
   }
-
   .project-gallery {
-    --gallery-top: 126px;
-    --gallery-gap: 6px;
-    --closed-height: 48svh;
-    --expanded-width: 88vw;
+    --gallery-top:40px;
+    --gallery-gap:6px;
+    --closed-height:26svh;
+    --expanded-width:82vw
   }
-
+  .project-gallery__track {
+    align-items:center
+  }
   .project-slide {
-    flex-basis: min(var(--closed-width), 72vw);
-    width: min(var(--closed-width), 72vw);
+    flex-basis:min(var(--closed-width),48vw);
+    width:min(var(--closed-width),48vw)
   }
-
   .project-slide.is-expanded {
-    flex-basis: var(--expanded-width);
-    width: var(--expanded-width);
+    flex-basis:var(--expanded-width);
+    width:var(--expanded-width);
+    height:44svh
   }
 }
-
-@media (prefers-reduced-motion: reduce) {
+@media(max-width:440px) {
+  .project-page {
+    overflow:auto
+  }
+  .project-header__summary {
+    top:34px;
+    left:15px;
+    width:calc(100vw - 30px);
+    font-size:10px;
+    line-height:1.05;
+    text-align:left;
+    transform:none
+  }
+  .project-gallery {
+    position:relative;
+    inset:auto;
+    overflow:visible;
+    cursor:auto;
+    touch-action:auto
+  }
+  .project-gallery__track {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+    width:100%;
+    height:auto;
+    padding:70px 0 55px
+  }
   .project-slide {
-    transition-duration: 1ms;
+    flex:none;
+    width:min(49vw,240px);
+    height:180px;
+    transition:width var(--expand-duration) var(--expand-easing),height var(--expand-duration) var(--expand-easing)
+  }
+  .project-slide img,.project-slide video {
+    object-fit:cover
+  }
+  .project-slide.is-expanded {
+    flex:none;
+    width:calc(100vw - 30px);
+    height:70vw
+  }
+  .project-slide:first-child {
+    height:180px
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  .project-slide {
+    transition-duration:1ms
   }
 }

@@ -4,6 +4,7 @@
   function initProjectGallery(gallery) {
     const track = gallery.querySelector(".project-gallery__track");
     const slides = Array.from(gallery.querySelectorAll(".project-slide"));
+    const mobileQuery = matchMedia("(max-width: 440px)");
 
     if (!track || slides.length === 0) return;
 
@@ -57,6 +58,15 @@
       updateSlideLabel(slide, true);
       track.classList.add("has-expanded");
       expandedSlide = slide;
+      if (!mobileQuery.matches) centerExpandedSlide(slide);
+    }
+
+    function centerExpandedSlide(slide, start = performance.now()) {
+      if (expandedSlide !== slide || mobileQuery.matches) return;
+      gallery.scrollLeft = Math.max(0, slide.offsetLeft - (gallery.clientWidth - slide.offsetWidth) / 2);
+      if (performance.now() - start < 620) {
+        requestAnimationFrame(() => centerExpandedSlide(slide, start));
+      }
     }
 
     function toggleSlide(slide) {
@@ -68,6 +78,11 @@
     }
 
     function alignInitialSlide() {
+      if (mobileQuery.matches) return;
+      if (expandedSlide) {
+        gallery.scrollLeft = Math.max(0, expandedSlide.offsetLeft - (gallery.clientWidth - expandedSlide.offsetWidth) / 2);
+        return;
+      }
       const initialIndex = Number(gallery.dataset.initialSlide || "0");
       const initialSlide = slides[initialIndex] || expandedSlide || slides[0];
       if (!initialSlide) return;
@@ -101,6 +116,7 @@
     });
 
     gallery.addEventListener("wheel", event => {
+      if (mobileQuery.matches) return;
       const isMostlyVertical = Math.abs(event.deltaY) > Math.abs(event.deltaX);
 
       if (!isMostlyVertical) return;
@@ -110,6 +126,7 @@
     }, { passive: false });
 
     gallery.addEventListener("pointerdown", event => {
+      if (mobileQuery.matches) return;
       if (event.pointerType !== "mouse" || event.button !== 0) return;
 
       pointerIsDown = true;
@@ -169,6 +186,25 @@
     });
 
     collapseAllSlides();
+
+    const videos = Array.from(gallery.querySelectorAll(".project-slide video"));
+    videos.forEach(video => {
+      video.autoplay = true;
+      video.muted = true;
+      video.loop = true;
+      video.playsInline = true;
+      video.preload = "metadata";
+      video.controls = false;
+    });
+    if (videos.length) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(({ target, intersectionRatio }) => {
+          if (intersectionRatio >= 0.35) target.play().catch(() => {});
+          else target.pause();
+        });
+      }, { threshold: [0, 0.35, 0.7] });
+      videos.forEach(video => observer.observe(video));
+    }
 
     window.addEventListener("resize", () => {
       window.requestAnimationFrame(alignInitialSlide);
