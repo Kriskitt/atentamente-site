@@ -1,0 +1,62 @@
+
+{
+  "navbar": {
+    "brand": "ATENTAMENTE",
+    "items": [
+      {
+        "id": "work",
+        "href": "/work/",
+        "label": {
+          "es": "Trabajo",
+          "en": "Work"
+        }
+      },
+      {
+        "id": "actions",
+        "href": "/actions/",
+        "label": {
+          "es": "Acciones",
+          "en": "Actions"
+        }
+      },
+      {
+        "id": "about",
+        "href": "/about/",
+        "label": {
+          "es": "Info",
+          "en": "About"
+        }
+      }
+    ]
+  },
+  "footer": {
+    "theme": {
+      "light": {
+        "es": "B/N",
+        "en": "B/W"
+      },
+      "dark": {
+        "es": "B/N",
+        "en": "B/W"
+      }
+    },
+    "language": {
+      "es": "ES",
+      "en": "EN"
+    }
+  },
+  "ui": {
+    "close": {
+      "es": "Cerrar",
+      "en": "Close"
+    },
+    "back": {
+      "es": null,
+      "en": null
+    },
+    "next": {
+      "es": null,
+      "en": null
+    }
+  }
+}

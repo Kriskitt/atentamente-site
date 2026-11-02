@@ -1,0 +1,351 @@
+{
+  "title": {
+    "es": "Atentamente",
+    "en": "Atentamente"
+  },
+  "statement": {
+    "es": "Atentamente es una práctica de diseño gráfico ubicada en Perú. Ofrecemos un enfoque distintivo en la comunicación visual desde una sensibilidad artística particular. Nuestro trabajo combina experimentación, concepto y estrategia de negocio con especial interés en las artes visuales y los proyectos vinculados a la cultura.\nNos interesan los lenguajes nuevos.",
+    "en": "Atentamente is a graphic practice based in Perú offering a distinctive approach to visual communication with a particular eye for craft. Our work blends experimentation, conceptual thinking and business strategy, with a focus on visual arts and culturally driven design projects.\nWe aim for the new."
+  },
+  "columns": [
+    {
+      "id": "projects-clients",
+      "sections": [
+        {
+          "id": "selected-projects-clients",
+          "heading": {
+            "es": "PROYECTOS SELECCIONADOS / CLIENTES",
+            "en": "SELECTED PROJECTS / CLIENTS"
+          },
+          "items": [
+            {
+              "text": {
+                "es": "Mérito",
+                "en": "Mérito"
+              }
+            },
+            {
+              "text": {
+                "es": "Demo / Demo más",
+                "en": "Demo / Demo más"
+              }
+            },
+            {
+              "text": {
+                "es": "Rito tostador",
+                "en": "Rito tostador"
+              }
+            },
+            {
+              "text": {
+                "es": "Clon",
+                "en": "Clon"
+              }
+            },
+            {
+              "text": {
+                "es": "Rafael x Ultramarinos",
+                "en": "Rafael x Ultramarinos"
+              }
+            },
+            {
+              "text": {
+                "es": "Astro studio",
+                "en": "Astro studio"
+              }
+            },
+            {
+              "text": {
+                "es": "Cine Infinito",
+                "en": "Cine Infinito"
+              }
+            },
+            {
+              "text": {
+                "es": "Grupo Euromotors",
+                "en": "Grupo Euromotors"
+              }
+            },
+            {
+              "text": {
+                "es": "Domingo inmobiliaria",
+                "en": "Domingo inmobiliaria"
+              }
+            },
+            {
+              "text": {
+                "es": "Desarrolladora",
+                "en": "Desarrolladora"
+              }
+            },
+            {
+              "text": {
+                "es": "Three monkeys coffee",
+                "en": "Three monkeys coffee"
+              }
+            },
+            {
+              "text": {
+                "es": "Fértil",
+                "en": "Fértil"
+              }
+            },
+            {
+              "text": {
+                "es": "Puna",
+                "en": "Puna"
+              }
+            },
+            {
+              "text": {
+                "es": "Mariano Carranza",
+                "en": "Mariano Carranza"
+              }
+            },
+            {
+              "text": {
+                "es": "Other",
+                "en": "Other"
+              }
+            },
+            {
+              "text": {
+                "es": "Registro",
+                "en": "Registro"
+              }
+            },
+            {
+              "text": {
+                "es": "Black Black Tattoo Studio",
+                "en": "Black Black Tattoo Studio"
+              }
+            },
+            {
+              "text": {
+                "es": "Ministerio de la creatividad",
+                "en": "Ministerio de la creatividad"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "services",
+      "sections": [
+        {
+          "id": "services",
+          "heading": {
+            "es": "SERVICIOS",
+            "en": "SERVICES"
+          },
+          "items": [
+            {
+              "text": {
+                "es": "Astro x Atentamente",
+                "en": "Astro x Atentamente"
+              }
+            },
+            {
+              "text": {
+                "es": "Naming",
+                "en": "Naming"
+              }
+            },
+            {
+              "text": {
+                "es": "Estrategia de marca",
+                "en": "Brand strategy"
+              }
+            },
+            {
+              "text": {
+                "es": "Identidad visual",
+                "en": "Visual identity"
+              }
+            },
+            {
+              "text": {
+                "es": "Contenido para redes sociales",
+                "en": "Social media content"
+              }
+            },
+            {
+              "text": {
+                "es": "Diseño de campañas",
+                "en": "Campaign design"
+              }
+            },
+            {
+              "text": {
+                "es": "Audiovisual",
+                "en": "Audiovisual"
+              }
+            },
+            {
+              "text": {
+                "es": "Lettering y caligrafía",
+                "en": "Lettering and calligraphy"
+              }
+            },
+            {
+              "text": {
+                "es": "Packaging",
+                "en": "Packaging"
+              }
+            },
+            {
+              "text": {
+                "es": "Ilustración",
+                "en": "Illustration"
+              }
+            },
+            {
+              "text": {
+                "es": "Desarrollo web",
+                "en": "Web development"
+              }
+            },
+            {
+              "text": {
+                "es": "Diseño editorial",
+                "en": "Editorial"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "recognitions-talks-press",
+      "sections": [
+        {
+          "id": "recognitions",
+          "heading": {
+            "es": "RECONOCIMIENTOS",
+            "en": "RECOGNITIONS"
+          },
+          "items": [
+            {
+              "text": {
+                "es": "Ganador Bronce LAD 2026 / Categoría Rebranding",
+                "en": "LAD winner 2026 - Bronze / Rebranding category"
+              }
+            },
+            {
+              "text": {
+                "es": "LAD shortlist 2026 (X2)",
+                "en": "LAD shortlist 2026 (X2)"
+              }
+            }
+          ]
+        },
+        {
+          "id": "talks",
+          "heading": {
+            "es": "CHARLAS",
+            "en": "TALKS"
+          },
+          "items": [
+            {
+              "text": {
+                "es": "LAD RADAR",
+                "en": "LAD RADAR"
+              }
+            },
+            {
+              "text": {
+                "es": "Latin american design 2026",
+                "en": "Latin american design 2026"
+              }
+            }
+          ]
+        },
+        {
+          "id": "press",
+          "heading": {
+            "es": "PRENSA",
+            "en": "PRESS"
+          },
+          "items": [
+            {
+              "text": {
+                "es": "BRAND NEW Friday Likes - Clon rebranding",
+                "en": "BRAND NEW Friday Likes - Clon rebranding"
+              },
+              "href": "https://www.underconsideration.com/brandnew/archives/friday_likes_592.php"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "team-contact",
+      "sections": [
+        {
+          "id": "team",
+          "heading": {
+            "es": "EQUIPO",
+            "en": "TEAM"
+          },
+          "items": [
+            {
+              "text": {
+                "es": "Belén Valverde Molina - Co founder",
+                "en": "Belén Valverde Molina - Co founder"
+              }
+            },
+            {
+              "text": {
+                "es": "Manuel Beltrán (Qenqo) - Co founder",
+                "en": "Manuel Beltrán (Qenqo) - Co founder"
+              }
+            },
+            {
+              "text": {
+                "es": "Cristian Madalengoitia - Web development",
+                "en": "Cristian Madalengoitia - Web development"
+              }
+            },
+            {
+              "text": {
+                "es": "Martín Valverde - Video editing",
+                "en": "Martín Valverde - Video editing"
+              }
+            }
+          ]
+        },
+        {
+          "id": "contact",
+          "heading": {
+            "es": "CONTACTO",
+            "en": "CONTACT"
+          },
+          "items": [
+            {
+              "text": {
+                "es": "info@atentamente.pe",
+                "en": "info@atentamente.pe"
+              },
+              "href": "mailto:info@atentamente.pe"
+            },
+            {
+              "text": {
+                "es": "+51 959637328",
+                "en": "+51 959637328"
+              },
+              "href": "https://wa.me/51959637328"
+            },
+            {
+              "text": {
+                "es": "IG",
+                "en": "IG"
+              },
+              "href": "https://www.instagram.com/___atentamente/"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

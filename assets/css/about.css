@@ -49,6 +49,7 @@
   position:relative;
   z-index:2;
   margin:0;
+  padding-inline:var(--gutter);
   color:var(--ink);
   font-size:30px;
   line-height:1.1;
@@ -58,6 +59,7 @@
   display:grid;
   grid-template-columns:repeat(4,minmax(0,1fr));
   gap:24px;
+  padding-inline:var(--gutter);
   padding-top:34px;
   font-size:14px;
   line-height:1.05
@@ -83,6 +85,12 @@
   text-decoration:underline
 }
 @media(max-width:1032px) {
+  .about-title-stage {
+    pointer-events:auto;
+    touch-action:pan-y;
+    user-select:none;
+    -webkit-user-select:none
+  }
   .about-intro {
     padding-top:51dvh
   }
