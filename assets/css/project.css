@@ -130,7 +130,7 @@
     width:calc(100vw - 30px);
     font-size:13px;
     line-height:1.05;
-    text-align:left;
+    text-align:center;
     transform:none
   }
   .project-gallery {

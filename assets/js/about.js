@@ -95,7 +95,7 @@
       scaleFrame = 0;
       if (!touchViewport.matches) return;
       const distance = Math.max(1, stage.clientHeight * 1.5);
-      const progress = Math.min(1, Math.max(0, window.scrollY / distance));
+      const progress = Math.min(1, Math.max(0, window.scrollY * 2 / distance));
       setScale(1 + progress * (touchMaxScale - 1));
     }
 
