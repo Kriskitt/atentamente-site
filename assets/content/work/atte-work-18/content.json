@@ -1,0 +1,22 @@
+{
+  "id": "atte-work-18",
+  "number": 18,
+  "slug": "mariano",
+  "title": {
+    "es": "Mariano Carranza",
+    "en": "Mariano Carranza"
+  },
+  "cover": "cover-mariano.webp",
+  "description": {
+    "es": "Mariano Carranza es un director y productor de cine que registra historias y personajes desde una mirada personal, entre lo local y lo universal. Su identidad toma referencias del diseño urbano y el lenguaje cinematográfico.",
+    "en": "Mariano Carranza is a film director and producer who captures stories and characters through a personal lens, bridging the local and the universal. His visual identity brings together elements of urban culture and the visual language of cinema."
+  },
+  "media": [
+    "01-mariano.webm",
+    "02-mariano.webm",
+    "03-mariano.webm",
+    "04-mariano.webm",
+    "05-mariano.webp",
+    "06-mariano.webp"
+  ]
+}

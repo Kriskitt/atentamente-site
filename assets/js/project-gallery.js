@@ -1,6 +1,67 @@
 (() => {
   "use strict";
 
+  async function buildGallery(gallery) {
+    const id = gallery.dataset.projectId;
+    const project = await window.atContent.load(`work/${id}/content.json`);
+    const root = `work/${id}/`;
+    const track = gallery.querySelector(".project-gallery__track");
+    const fragment = document.createDocumentFragment();
+    project.media.forEach((name, index) => {
+      const slide = document.createElement("button");
+      slide.className = "project-slide";
+      slide.type = "button";
+      slide.setAttribute("aria-label", `Expand media ${index + 1}`);
+      slide.setAttribute("aria-pressed", "false");
+      const setRatio = (width, height) => {
+        if (!width || !height) return;
+        const ratio = width / height;
+        slide.style.setProperty("--media-ratio", String(ratio));
+        slide.style.setProperty("--closed-width", `min(45vw,calc(var(--closed-height) * ${ratio}))`);
+      };
+      const element = document.createElement(name.endsWith(".webm") ? "video" : "img");
+      if (element.tagName === "VIDEO") {
+        element.src = window.atContent.url(root + name);
+        element.addEventListener("loadedmetadata", () => setRatio(element.videoWidth, element.videoHeight));
+      } else {
+        element.src = window.atContent.url(window.atContent.variant(root + name, 1000));
+        element.srcset = `${element.src} 1000w, ${window.atContent.url(window.atContent.variant(root + name, 2000))} 2000w`;
+        element.sizes = "(max-width: 440px) 100vw, (max-width: 1032px) 82vw, 70vw";
+        element.loading = "lazy";
+        element.decoding = "async";
+        element.alt = `${project.title[window.atContent.lang()]} media ${index + 1}`;
+        element.addEventListener("load", () => {
+          setRatio(element.naturalWidth, element.naturalHeight);
+        });
+      }
+      slide.append(element);
+      fragment.append(slide);
+    });
+    track.replaceChildren(fragment);
+    const updateText = () => {
+      const lang = window.atContent.lang();
+      document.title = `${project.title[lang]} — Atentamente`;
+      const heading = document.querySelector(".project-main h1");
+      if (heading) heading.textContent = project.title[lang];
+      for (const selector of ['meta[property="og:title"]', 'meta[name="twitter:title"]']) {
+        const meta = document.querySelector(selector);
+        if (meta) meta.content = document.title;
+      }
+      const summary = document.querySelector(".project-header__summary");
+      if (summary) summary.textContent = project.description[lang];
+      if (summary) gallery.style.setProperty("--mobile-gallery-top", `${Math.max(70, Math.ceil(summary.getBoundingClientRect().bottom + 10))}px`);
+      if (summary) gallery.style.setProperty("--gallery-top", `${Math.max(innerWidth <= 1032 ? 40 : 98, Math.ceil(summary.getBoundingClientRect().bottom + 12))}px`);
+      gallery.setAttribute("aria-label", `${project.title[lang]} gallery`);
+      gallery.querySelectorAll(".project-slide").forEach((slide, i) => {
+        const img = slide.querySelector("img");
+        if (img) img.alt = `${project.title[lang]} media ${i + 1}`;
+      });
+    };
+    updateText();
+    document.addEventListener("at:language", updateText);
+    window.addEventListener("resize", updateText);
+  }
+
   function initProjectGallery(gallery) {
     const track = gallery.querySelector(".project-gallery__track");
     const slides = Array.from(gallery.querySelectorAll(".project-slide"));
@@ -213,6 +274,9 @@
     window.requestAnimationFrame(alignInitialSlide);
   }
 
-  document.querySelectorAll("[data-project-gallery]").forEach(initProjectGallery);
+  document.querySelectorAll("[data-project-gallery]").forEach(gallery => {
+    if (!gallery.dataset.projectId) { initProjectGallery(gallery); return; }
+    buildGallery(gallery).then(() => initProjectGallery(gallery)).catch(error => console.error("Work Single content", error));
+  });
 
 })();

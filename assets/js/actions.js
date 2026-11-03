@@ -1,28 +1,32 @@
 (() => {
   "use strict";
 
-  const itemPool = [
-    { id: "white", image: "../assets/images/action-white.webp", alt: "White sculptural artwork on dark ground", width: 748, height: 919 },
-    { id: "blue", image: "../assets/images/action-blue.webp", alt: "Blue painted graphic detail", width: 678, height: 1208 },
-    { id: "relief", image: "../assets/images/action-relief.webp", alt: "White embossed artwork on a tree", width: 1054, height: 1329 }
-  ];
-  // Authored descriptions and distinct collections have not been supplied yet.
-  const collections = ["00", "01", "02", "03"].map(id => ({ id, label: id, description: "", items: itemPool }));
+  let collections = [];
   const desktopQuery = matchMedia("(min-width: 1033px)");
+  const mobileQuery = matchMedia("(max-width: 440px)");
   const tabs = document.querySelector("[data-actions-tabs]");
   const subtitle = document.querySelector("[data-actions-subtitle]");
   const container = document.querySelector("[data-actions-collections]");
   const overlay = document.querySelector("[data-actions-overlay]");
-  const overlayImage = document.querySelector("[data-actions-image]");
+  let overlayMedia = document.querySelector("[data-actions-image]");
   const mediaZone = document.querySelector("[data-actions-media]");
   const cursor = document.querySelector("[data-actions-cursor]");
   const closeButton = document.querySelector("[data-actions-close]");
   if (!tabs || !container || !overlay || !mediaZone) return;
 
+  function updateIntroTop() {
+    const header = document.querySelector(".site-header");
+    const main = document.querySelector(".actions-main");
+    if (innerWidth <= 440 && header) main.style.setProperty("--actions-header-bottom", `${Math.ceil(header.getBoundingClientRect().bottom + 12)}px`);
+    else main.style.removeProperty("--actions-header-bottom");
+  }
+  updateIntroTop();
+  window.addEventListener("resize", updateIntroTop);
+
   const batchSize = 10;
   const maxBatches = 4;
-  const finiteOrder = ["white", "blue", "relief", "blue", "relief", "blue", "white", "blue", "white"];
-  let activeCollection = collections[0];
+  let activeCollection = null;
+  let videoObserver = null;
   let currentItemIndex = -1;
   let lastItemId = null;
   let batchCount = 0;
@@ -30,6 +34,14 @@
   let savedScrollY = 0;
   let opener = null;
   let desktopMode = desktopQuery.matches;
+  let selectedButton = null;
+
+  function clearSelection() {
+    if (!selectedButton) return;
+    selectedButton.classList.remove("is-selected");
+    selectedButton.setAttribute("aria-pressed", "false");
+    selectedButton = null;
+  }
 
   function itemById(id) { return activeCollection.items.find(item => item.id === id); }
 
@@ -49,15 +61,14 @@
     button.className = "actions-item";
     button.type = "button";
     button.dataset.itemId = item.id;
-    button.setAttribute("aria-label", `Open ${item.alt}`);
-    const image = document.createElement("img");
-    image.src = item.image;
-    image.alt = item.alt;
-    image.width = item.width;
-    image.height = item.height;
-    image.loading = eager ? "eager" : "lazy";
-    image.decoding = "async";
-    button.append(image);
+    button.setAttribute("aria-label", `${mobileQuery.matches ? "Select" : "Open"} ${item.alt}`);
+    if (mobileQuery.matches) button.setAttribute("aria-pressed", "false");
+    const media = document.createElement(item.video ? "video" : "img");
+    media.src = item.src;
+    media.setAttribute("aria-label", item.alt);
+    if (item.video) { media.muted = true; media.loop = true; media.playsInline = true; media.preload = "none"; }
+    else { media.alt = item.alt; media.loading = eager ? "eager" : "lazy"; media.decoding = "async"; }
+    button.append(media);
     return button;
   }
 
@@ -65,12 +76,11 @@
     const batch = document.createElement("div");
     batch.className = "actions-grid";
     batch.dataset.batch = String(batchCount++);
-    const items = batchCount === 1
-      ? finiteOrder.concat(["blue"]).map(itemById)
-      : randomizedItems(batchSize);
+    const items = batchCount === 1 ? activeCollection.items : randomizedItems(batchSize);
     if (batchCount === 1) lastItemId = items.at(-1).id;
     items.forEach((item, index) => batch.append(makeItem(item, batchCount === 1 && index < 5)));
     container.append(batch);
+    if (videoObserver) batch.querySelectorAll("video").forEach(video => videoObserver.observe(video));
   }
 
   function renderTabs() {
@@ -88,20 +98,27 @@
   }
 
   function renderCollection(resetScroll = false) {
+    clearSelection();
     lastItemId = null;
     batchCount = 0;
     renderTabs();
-    subtitle.textContent = activeCollection.description || "";
-    subtitle.hidden = !activeCollection.description;
+    subtitle.textContent = activeCollection.description[window.atContent.lang()] || "";
+    subtitle.hidden = !subtitle.textContent;
+    videoObserver?.disconnect();
+    container.querySelectorAll("video").forEach(video => video.pause());
     container.replaceChildren();
     if (desktopMode) {
       for (let i = 0; i < 3; i += 1) makeBatch();
     } else {
       const grid = document.createElement("div");
       grid.className = "actions-grid";
-      finiteOrder.forEach((id, index) => grid.append(makeItem(itemById(id), index < 3)));
+      activeCollection.items.forEach((item, index) => grid.append(makeItem(item, index < 3)));
       container.append(grid);
     }
+    videoObserver = new IntersectionObserver(entries => entries.forEach(({ target, isIntersecting }) => {
+      if (isIntersecting && !document.hidden) target.play().catch(() => {}); else target.pause();
+    }), { threshold: 0.2 });
+    container.querySelectorAll("video").forEach(video => videoObserver.observe(video));
     if (resetScroll) window.scrollTo(0, 0);
   }
 
@@ -123,7 +140,7 @@
   function preloadAdjacent() {
     [-1, 1].forEach(offset => {
       const item = activeCollection.items[currentItemIndex + offset];
-      if (item) { const image = new Image(); image.src = item.image; }
+      if (item && !item.video) { const image = new Image(); image.src = item.src; }
     });
   }
 
@@ -131,8 +148,15 @@
     if (index < 0 || index >= activeCollection.items.length) return;
     currentItemIndex = index;
     const item = activeCollection.items[index];
-    overlayImage.src = item.image;
-    overlayImage.alt = item.alt;
+    overlayMedia?.pause?.();
+    if (!overlayMedia || overlayMedia.tagName !== (item.video ? "VIDEO" : "IMG")) {
+      overlayMedia = document.createElement(item.video ? "video" : "img");
+      overlayMedia.className = "actions-overlay__image";
+      mediaZone.replaceChildren(overlayMedia);
+    }
+    overlayMedia.src = item.src;
+    if (item.video) { overlayMedia.muted = true; overlayMedia.loop = true; overlayMedia.playsInline = true; overlayMedia.controls = false; overlayMedia.play().catch(() => {}); }
+    else overlayMedia.alt = item.alt;
     overlay.setAttribute("aria-label", `${item.alt}, item ${index + 1} of ${activeCollection.items.length}`);
     preloadAdjacent();
     cursor.style.opacity = "0";
@@ -154,7 +178,9 @@
     if (overlay.hidden) return;
     overlay.hidden = true;
     cursor.style.opacity = "0";
-    overlayImage.removeAttribute("src");
+    overlayMedia?.pause?.();
+    overlayMedia?.removeAttribute("src");
+    if (overlayMedia?.tagName === "VIDEO") overlayMedia.load();
     document.body.style.position = "";
     document.body.style.top = "";
     document.body.style.left = "";
@@ -171,7 +197,16 @@
   });
   container.addEventListener("click", event => {
     const button = event.target.closest(".actions-item");
-    if (button) openItem(itemById(button.dataset.itemId), button);
+    if (!button) return;
+    if (mobileQuery.matches) {
+      if (selectedButton === button) { clearSelection(); return; }
+      clearSelection();
+      button.classList.add("is-selected");
+      button.setAttribute("aria-pressed", "true");
+      selectedButton = button;
+      return;
+    }
+    openItem(itemById(button.dataset.itemId), button);
   });
   overlay.addEventListener("click", event => {
     if (event.target === overlay) closeOverlay();
@@ -205,5 +240,32 @@
     desktopMode = desktopQuery.matches;
     renderCollection();
   });
-  renderCollection();
+  mobileQuery.addEventListener("change", () => {
+    clearSelection();
+    if (mobileQuery.matches) closeOverlay();
+    container.querySelectorAll(".actions-item").forEach(button => {
+      const item = itemById(button.dataset.itemId);
+      button.setAttribute("aria-label", `${mobileQuery.matches ? "Select" : "Open"} ${item.alt}`);
+      if (mobileQuery.matches) button.setAttribute("aria-pressed", "false");
+      else button.removeAttribute("aria-pressed");
+    });
+  });
+  document.addEventListener("visibilitychange", () => { if (document.hidden) { overlayMedia?.pause?.(); container.querySelectorAll("video").forEach(v => v.pause()); } else if (!overlay.hidden && overlayMedia?.tagName === "VIDEO") overlayMedia.play().catch(() => {}); });
+  document.addEventListener("at:language", () => {
+    updateIntroTop();
+    const y = window.scrollY;
+    subtitle.textContent = activeCollection?.description[window.atContent.lang()] || "";
+    subtitle.hidden = !subtitle.textContent;
+    if (activeCollection) renderTabs();
+    window.scrollTo(0, y);
+  });
+  Promise.all(Array.from({ length: 4 }, (_, i) => window.atContent.load(`actions/actions-${String(i).padStart(2, "0")}/content.json`)))
+    .then(data => {
+      collections = data.sort((a, b) => a.number - b.number).map(collection => ({
+        ...collection, label: String(collection.number).padStart(2, "0"),
+        items: collection.media.map((name, index) => ({ id: `${collection.id}:${index}`, alt: `${collection.id} media ${index + 1}`,
+          src: window.atContent.url(`actions/${collection.id}/${name}`), video: name.endsWith(".webm") }))
+      }));
+      activeCollection = collections[0]; renderCollection();
+    }).catch(error => console.error("Actions content", error));
 })();

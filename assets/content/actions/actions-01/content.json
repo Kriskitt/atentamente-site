@@ -1,0 +1,14 @@
+{
+  "id": "actions-01",
+  "number": 1,
+  "description": {
+    "es": "Exploraciones en torno a la abstracción de la gráfica popular, reinterpretada mediante impresión 3D.\nEn colaboración con Asiel Núñez.",
+    "en": "An exploration of abstraction in popular visual culture, reinterpreted through 3D printing.\nIn collaboration with Asiel Núñez"
+  },
+  "media": [
+    "action01-01.webp",
+    "action01-02.webm",
+    "action01-03.webp",
+    "action01-04.webp"
+  ]
+}

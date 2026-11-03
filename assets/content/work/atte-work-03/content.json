@@ -1,0 +1,23 @@
+{
+  "id": "atte-work-03",
+  "number": 3,
+  "slug": "cine-infinito",
+  "title": {
+    "es": "Cine Infinito",
+    "en": "Cine Infinito"
+  },
+  "cover": "cover-cine-infinito.webp",
+  "description": {
+    "es": "Cine Infinito es una productora peruana de cine de autor enfocada en lo onírico y lo inesperado. Su identidad visual parte de la idea del infinito como una continuidad abierta y en constante movimiento.",
+    "en": "Cine Infinito is a Peruvian film production company dedicated to auteur cinema and drawn to the dreamlike and the unexpected. Its visual identity explores infinity as an open-ended concept, always in motion."
+  },
+  "media": [
+    "01-cine-infinito.webm",
+    "02-cine-infinito.webm",
+    "03-cine-infinito.webm",
+    "04-cine-infinito.webm",
+    "05-cine-infinito.webm",
+    "06-cine-infinito.webm",
+    "07-cine-infinito.webm"
+  ]
+}

@@ -1,49 +1,62 @@
 (() => {
   "use strict";
 
+  window.atContent.load("about/content.json").then(content => {
+    const statement = document.querySelector(".about-statement");
+    const details = document.querySelector(".about-details");
+    const wordmark = document.getElementById("about-scaled-text");
+    const render = () => {
+      const y = window.scrollY;
+      const lang = window.atContent.lang();
+      statement.textContent = content.statement[lang];
+      statement.style.whiteSpace = "pre-line";
+      wordmark.replaceChildren(...Array.from(content.title[lang]).flatMap((letter, index) => index ? [document.createElement("br"), document.createTextNode(letter)] : [document.createTextNode(letter)]));
+      const columns = document.createDocumentFragment();
+      content.columns.forEach(column => {
+        const wrapper = document.createElement("div");
+        wrapper.className = "about-column";
+        column.sections.forEach(section => {
+          const heading = document.createElement("h2");
+          heading.textContent = section.heading[lang];
+          const body = document.createElement("p");
+          section.items.forEach((item, index) => {
+            if (index) body.append(document.createElement("br"));
+            const text = item.text[lang];
+            if (item.href) {
+              const link = document.createElement("a");
+              link.href = item.href;
+              link.textContent = text;
+              if (/^https?:/.test(item.href)) { link.target = "_blank"; link.rel = "noopener noreferrer"; }
+              body.append(link);
+            } else body.append(document.createTextNode(text));
+          });
+          wrapper.append(heading, body);
+        });
+        columns.append(wrapper);
+      });
+      details.replaceChildren(columns);
+      requestAnimationFrame(() => { window.dispatchEvent(new Event("resize")); window.scrollTo(0, y); });
+    };
+    render();
+    document.addEventListener("at:language", render);
+  }).catch(error => console.error("About content", error));
+
   const textElement = document.getElementById("about-scaled-text");
 
   if (textElement) {
     const stage = textElement.closest(".about-title-stage");
     const minScale = 1;
     const maxScale = 30.3;
-    const touchMinScale = 0.55;
     const touchViewport = window.matchMedia("(max-width: 1032px)");
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let lastPointerX = null;
     let currentScale = 1;
     let touchMaxScale = maxScale;
     let naturalWidth = 1;
-    let activePointerId = null;
-    let startX = 0;
-    let startY = 0;
-    let startScale = 1;
-    let gesture = null;
-    let pendingScale = null;
     let scaleFrame = 0;
-    let returnFrame = 0;
 
     function setScale(scale) {
       currentScale = scale;
       textElement.style.transform = `scaleX(${scale.toFixed(3)})`;
-    }
-
-    function scheduleScale(scale) {
-      pendingScale = scale;
-      if (scaleFrame) return;
-      scaleFrame = requestAnimationFrame(() => {
-        scaleFrame = 0;
-        setScale(pendingScale);
-        pendingScale = null;
-      });
-    }
-
-    function cancelAnimation() {
-      cancelAnimationFrame(returnFrame);
-      cancelAnimationFrame(scaleFrame);
-      returnFrame = 0;
-      scaleFrame = 0;
-      pendingScale = null;
     }
 
     function fitWordmark() {
@@ -78,80 +91,36 @@
       applyScale(event.clientX);
     });
 
-    stage.addEventListener("pointerdown", event => {
-      if (!touchViewport.matches || activePointerId !== null || !event.isPrimary) return;
-      cancelAnimation();
-      activePointerId = event.pointerId;
-      startX = event.clientX;
-      startY = event.clientY;
-      startScale = currentScale;
-      gesture = null;
-      stage.setPointerCapture(event.pointerId);
-    });
-
-    stage.addEventListener("pointermove", event => {
-      if (event.pointerId !== activePointerId) return;
-      const deltaX = event.clientX - startX;
-      const deltaY = event.clientY - startY;
-      if (gesture === null && Math.max(Math.abs(deltaX), Math.abs(deltaY)) >= 3) {
-        gesture = Math.abs(deltaX) > Math.abs(deltaY) ? "horizontal" : "vertical";
-        if (gesture === "vertical") {
-          endTouch(event);
-          return;
-        }
-      }
-      if (gesture !== "horizontal") return;
-      const scale = startScale + deltaX / naturalWidth;
-      scheduleScale(Math.min(touchMaxScale, Math.max(touchMinScale, scale)));
-    });
-
-    function endTouch(event) {
-      if (event.pointerId !== activePointerId) return;
-      if (stage.hasPointerCapture(activePointerId)) stage.releasePointerCapture(activePointerId);
-      activePointerId = null;
-      gesture = null;
-      if (scaleFrame) {
-        cancelAnimationFrame(scaleFrame);
-        scaleFrame = 0;
-        setScale(pendingScale);
-        pendingScale = null;
-      }
-      if (reducedMotion.matches || currentScale === 1) {
-        setScale(1);
-        return;
-      }
-      const initialScale = currentScale;
-      const startTime = performance.now();
-      function returnToRest(now) {
-        const progress = Math.min((now - startTime) / 450, 1);
-        const eased = 1 - (1 - progress) ** 3;
-        setScale(initialScale + (1 - initialScale) * eased);
-        returnFrame = progress < 1 ? requestAnimationFrame(returnToRest) : 0;
-      }
-      returnFrame = requestAnimationFrame(returnToRest);
+    function applyScrollScale() {
+      scaleFrame = 0;
+      if (!touchViewport.matches) return;
+      const distance = Math.max(1, stage.clientHeight * 1.5);
+      const progress = Math.min(1, Math.max(0, window.scrollY / distance));
+      setScale(1 + progress * (touchMaxScale - 1));
     }
 
-    stage.addEventListener("pointerup", endTouch);
-    stage.addEventListener("pointercancel", endTouch);
+    window.addEventListener("scroll", () => {
+      if (!touchViewport.matches || scaleFrame) return;
+      scaleFrame = requestAnimationFrame(applyScrollScale);
+    }, { passive: true });
 
     touchViewport.addEventListener("change", () => {
-      if (activePointerId !== null && stage.hasPointerCapture(activePointerId)) {
-        stage.releasePointerCapture(activePointerId);
-      }
-      activePointerId = null;
-      cancelAnimation();
-      setScale(1);
       fitWordmark();
+      if (touchViewport.matches) applyScrollScale();
+      else if (lastPointerX !== null) applyScale(Math.min(Math.max(lastPointerX, 0), window.innerWidth));
+      else setScale(1);
     });
 
     window.addEventListener("resize", () => {
       fitWordmark();
-      if (touchViewport.matches || lastPointerX === null) return;
+      if (touchViewport.matches) { applyScrollScale(); return; }
+      if (lastPointerX === null) return;
       applyScale(Math.min(Math.max(lastPointerX, 0), window.innerWidth));
     });
     new ResizeObserver(fitWordmark).observe(stage);
     document.fonts.ready.then(fitWordmark);
     fitWordmark();
+    applyScrollScale();
   }
 
 })();

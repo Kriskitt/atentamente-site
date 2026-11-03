@@ -7,9 +7,13 @@
   padding:0 0 90px
 }
 .actions-intro {
-  position:relative;
-  z-index:1;
-  padding-top:var(--gutter);
+  position:sticky;
+  z-index:30;
+  top:0;
+  padding:var(--gutter) 0 8px;
+  background:transparent;
+  color:#fff;
+  mix-blend-mode:difference;
   text-align:center
 }
 .actions-tabs {
@@ -29,8 +33,13 @@
   outline:1px solid currentColor
 }
 .actions-subtitle {
-  margin:4px 0 0;
-  font-style:normal
+  width:min(700px,calc(100% - 30px));
+  margin:4px auto 0;
+  font-size:1.3em;
+  line-height:1.15;
+  text-align:left;
+  font-style:normal;
+  white-space:pre-line
 }
 .actions-collections {
   padding:22px 0 0
@@ -44,17 +53,14 @@
 }
 .actions-item {
   display:block;
-  align-self:start;
+  align-self:center;
   width:100%;
   text-align:left
 }
-.actions-item:nth-child(5n + 1) {
-  margin-top:90px
+.actions-item a {
+  align-self:center
 }
-.actions-item:nth-child(5n + 4) {
-  margin-top:70px
-}
-.actions-item img {
+.actions-item img,.actions-item video {
   display:block;
   width:100%;
   height:auto;
@@ -126,12 +132,6 @@
     column-gap:2vw;
     row-gap:30px
   }
-  .actions-item:nth-child(n) {
-    margin-top:0
-  }
-  .actions-item:nth-child(3n + 1) {
-    margin-top:60px
-  }
   .actions-overlay__media {
     max-width:90vw;
     cursor:pointer
@@ -145,30 +145,34 @@
   }
 }
 @media(max-width:440px) {
+  .actions-main {
+    padding-top:var(--actions-header-bottom,40px)
+  }
+  .actions-intro {
+    top:var(--actions-header-bottom,40px);
+    padding:0 var(--gutter) 8px
+  }
+  .actions-subtitle {
+    width:100%
+  }
   .actions-collections {
-    padding-top:104px
+    padding:24px var(--gutter) 0
   }
   .actions-grid {
     display:flex;
     flex-direction:column;
-    align-items:center;
+    align-items:stretch;
     gap:14px;
     margin:0
   }
-  .actions-item:nth-child(n) {
-    align-self:center;
-    width:53%;
-    margin:0
+  .actions-item img,.actions-item video {
+    height:auto;
+    aspect-ratio:auto;
+    object-fit:contain
   }
-  .actions-item[data-item-id="blue"] {
-    width:47%
-  }
-  .actions-item img {
-    aspect-ratio:1;
-    object-fit:cover
-  }
-  .actions-item[data-item-id="blue"] img {
-    aspect-ratio:.63
+  .actions-item.is-selected {
+    outline:2px solid var(--ink);
+    outline-offset:6px
   }
   .actions-overlay__image {
     max-width:90vw;

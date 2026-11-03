@@ -1,0 +1,24 @@
+{
+  "id": "atte-work-20",
+  "number": 20,
+  "slug": "puna",
+  "title": {
+    "es": "Puna",
+    "en": "Puna"
+  },
+  "cover": "cover-puna.webp",
+  "description": {
+    "es": "Diseño de contenido para @puna.lima",
+    "en": "Content design for @puna.lima."
+  },
+  "media": [
+    "01-puna.webm",
+    "02-puna.webm",
+    "03-puna.webp",
+    "04-puna.webm",
+    "05-puna.webp",
+    "06-puna.webm",
+    "07-puna.webm",
+    "08-puna.webp"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "id": "atte-work-13",
+  "number": 13,
+  "slug": "como-sufres",
+  "title": {
+    "es": "Cómo sufres al verme pasar",
+    "en": "Cómo sufres al verme pasar"
+  },
+  "cover": "cover-como-sufres.webp",
+  "description": {
+    "es": "CÓMO SUFRES AL VERME PASAR es el proyecto fotográfico de Cristina Kompanichenko y Alejandro Huamán que retrata los mototaxis de Urubamba como expresión de la vida cotidiana del valle. Diseñamos un fotolibro cuyo lenguaje gráfico nace de las propias fotografías y de los códigos visuales populares que rodean estos vehículos.",
+    "en": "CÓMO SUFRES AL VERME PASAR is a photographic project by Cristina Kompanichenko and Alejandro Huamán, documenting the mototaxis of Urubamba as an expression of everyday life in the valley. We designed a photobook whose graphic language emerges from the photographs themselves and the popular visual culture surrounding these vehicles."
+  },
+  "media": [
+    "01-como-sufres.webm",
+    "02-como-sufres.webp",
+    "03-como-sufres.webp",
+    "04-como-sufres.webp",
+    "05-como-sufres.webp",
+    "06-como-sufres.webp",
+    "07-como-sufres.webp",
+    "08-como-sufres.webp",
+    "09-como-sufres.webp",
+    "10-como-sufres.webp",
+    "11-como-sufres.webp",
+    "12-como-sufres.webp",
+    "13-como-sufres.webp",
+    "14-como-sufres.webp",
+    "15-como-sufres.webp",
+    "16-como-sufres.webp"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "id": "atte-work-02",
+  "number": 2,
+  "slug": "domingo",
+  "title": {
+    "es": "Domingo",
+    "en": "Domingo"
+  },
+  "cover": "cover-domingo.webp",
+  "description": {
+    "es": "Domingo es una inmobiliaria que entiende la arquitectura a partir del valor de lo cotidiano. Desde esa mirada, su identidad refleja los vínculos e historias que habitan un espacio.",
+    "en": "Domingo is a real estate company that approaches architecture through the value of everyday life. From this perspective, its visual identity reflects the connections and stories that bring a space to life."
+  },
+  "media": [
+    "01-domingo.webm",
+    "02-domingo.webp",
+    "03-domingo.webm",
+    "04-domingo.webp",
+    "05-domingo.webm",
+    "06-domingo.webp",
+    "07-domingo.webp",
+    "08-domingo.webp",
+    "09-domingo.webp",
+    "10-domingo.webp",
+    "11-domingo.webm",
+    "12-domingo.webp",
+    "13-domingo.webp"
+  ]
+}

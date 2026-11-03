@@ -1,0 +1,36 @@
+{
+  "media": {
+    "desktop-tablet": {
+      "path": "desktop-tablet/",
+      "files": [
+        "01-home.webp",
+        "02-home.webp",
+        "03-home.webp",
+        "04-home.webp",
+        "05-home.webp",
+        "06-home.webp",
+        "07-home.webm",
+        "08-home.webp",
+        "09-home.webp",
+        "10-home.webp",
+        "11-home.webp"
+      ]
+    },
+    "mobile": {
+      "path": "mobile/",
+      "files": [
+        "01-home.webp",
+        "02-home.webm",
+        "03-home.webp",
+        "04-home.webp",
+        "05-home.webp",
+        "06-home.webp",
+        "07-home.webm",
+        "08-home.webp",
+        "09-home.webm",
+        "10-home.webp",
+        "11-home.webp"
+      ]
+    }
+  }
+}

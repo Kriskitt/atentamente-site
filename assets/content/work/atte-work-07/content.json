@@ -1,0 +1,19 @@
+{
+  "id": "atte-work-07",
+  "number": 7,
+  "slug": "astro",
+  "title": {
+    "es": "Astro",
+    "en": "Astro"
+  },
+  "cover": "cover-astro.webp",
+  "description": {
+    "es": "Astro es un estudio de arquitectura .Su identidad visual nace de la geometría y de las líneas imaginarias que unen las estrellas o constelaciones.",
+    "en": "Astro is an architecture studio. Its visual identity draws on geometry and the imaginary lines that connect stars to form constellations."
+  },
+  "media": [
+    "01-astro.webp",
+    "02-astro.webm",
+    "03-astro.webm"
+  ]
+}

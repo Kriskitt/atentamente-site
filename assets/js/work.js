@@ -6,150 +6,7 @@
 
   if (!gallery || !track) return;
 
-  const projects = [
-    {
-      index: 1,
-      title: "Mesa",
-      slug: "mesa",
-      image: "../assets/rsc/home/desktop-tablet/home-atte1.webp",
-      width: 2560,
-      height: 1440,
-      orientation: "landscape"
-    },
-    {
-      index: 2,
-      title: "Clon",
-      slug: "clon",
-      image: "../assets/images/work-clon.webp",
-      width: 2048,
-      height: 2560,
-      orientation: "portrait",
-      position: "50% 50%"
-    },
-    {
-      index: 3,
-      title: "Luz",
-      slug: "luz",
-      image: "../assets/rsc/home/desktop-tablet/home-atte1.webp",
-      width: 2560,
-      height: 1440,
-      orientation: "landscape"
-    },
-    {
-      index: 4,
-      title: "Archivo",
-      slug: "archivo",
-      image: "../assets/images/work-clon.webp",
-      width: 2048,
-      height: 2560,
-      orientation: "portrait",
-      position: "54% 50%"
-    },
-    {
-      index: 5,
-      title: "Turno",
-      slug: "turno",
-      image: "../assets/rsc/home/desktop-tablet/home-atte1.webp",
-      width: 2560,
-      height: 1440,
-      orientation: "landscape"
-    },
-    {
-      index: 6,
-      title: "Sala",
-      slug: "sala",
-      image: "../assets/images/work-clon.webp",
-      width: 2048,
-      height: 2560,
-      orientation: "portrait",
-      position: "48% 50%"
-    },
-    {
-      index: 7,
-      title: "Forma",
-      slug: "forma",
-      image: "../assets/images/work-atte3.webp",
-      width: 1920,
-      height: 1080,
-      orientation: "landscape"
-    },
-    {
-      index: 8,
-      title: "Action 01",
-      slug: "action-01",
-      image: "../assets/images/action-blue.webp",
-      width: 678,
-      height: 1208,
-      orientation: "portrait",
-      position: "50% 45%"
-    },
-    {
-      index: 9,
-      title: "Piedra",
-      slug: "piedra",
-      image: "../assets/images/work-atte4.webp",
-      width: 2560,
-      height: 1440,
-      orientation: "landscape"
-    },
-    {
-      index: 10,
-      title: "Secuencia",
-      slug: "secuencia",
-      image: "../assets/images/action-relief.webp",
-      width: 1054,
-      height: 1329,
-      orientation: "portrait",
-      position: "50% 48%"
-    },
-    {
-      index: 11,
-      title: "Objeto",
-      slug: "objeto",
-      image: "../assets/images/home-atte4.webp",
-      width: 471,
-      height: 333,
-      orientation: "landscape"
-    },
-    {
-      index: 12,
-      title: "Metal",
-      slug: "metal",
-      image: "../assets/images/action-white.webp",
-      width: 748,
-      height: 919,
-      orientation: "portrait",
-      position: "50% 48%"
-    },
-    {
-      index: 13,
-      title: "Contenido",
-      slug: "contenido",
-      image: "../assets/images/home-atte5.webp",
-      width: 2400,
-      height: 1080,
-      orientation: "landscape"
-    },
-    {
-      index: 14,
-      title: "Publicacion",
-      slug: "publicacion",
-      image: "../assets/images/work-clon.webp",
-      width: 2048,
-      height: 2560,
-      orientation: "portrait",
-      position: "52% 50%"
-    },
-    {
-      index: 15,
-      title: "Imagen",
-      slug: "imagen",
-      image: "../assets/images/home-atte6.webp",
-      width: 2400,
-      height: 1080,
-      orientation: "landscape"
-    }
-  ];
+  let projects = [];
 
   const setCount = 3;
   const mobileQuery = matchMedia("(max-width: 440px)");
@@ -171,36 +28,37 @@
   function createCard(project, setIndex) {
     const card = document.createElement("article");
     card.className = "work-card";
-    card.dataset.orientation = project.orientation;
+    card.dataset.orientation = "landscape";
     card.dataset.slug = project.slug;
-    if (project.position) card.style.setProperty("--image-position", project.position);
 
     const link = document.createElement("a");
     link.className = "work-card__link";
     link.href = `${project.slug}/`;
-    link.setAttribute("aria-label", `${project.title}, project ${project.index}`);
+    link.setAttribute("aria-label", `${project.title[window.atContent.lang()]}, project ${project.number}`);
     link.dataset.projectSlug = project.slug;
 
     const index = document.createElement("span");
     index.className = "work-card__index";
-    index.textContent = formatIndex(project.index);
+    index.textContent = formatIndex(project.number);
 
     const frame = document.createElement("span");
     frame.className = "work-card__frame";
 
     const image = document.createElement("img");
     image.className = "work-card__image";
-    image.src = project.image;
-    image.alt = `${project.title} project image`;
-    image.width = project.width;
-    image.height = project.height;
+    const cover = `work/${project.id}/${project.cover}`;
+    image.src = window.atContent.url(window.atContent.variant(cover, 1000));
+    image.srcset = `${image.src} 1000w, ${window.atContent.url(window.atContent.variant(cover, 2000))} 2000w`;
+    image.sizes = "(max-width: 440px) 50vw, (max-width: 1032px) 26vw, clamp(292px, 15.45vw, 594px)";
+    image.alt = `${project.title[window.atContent.lang()]} project image`;
+    image.addEventListener("load", () => { card.dataset.orientation = image.naturalHeight > image.naturalWidth ? "portrait" : "landscape"; });
     image.decoding = "async";
     image.draggable = false;
     image.loading = mobileMode || setIndex !== 1 ? "lazy" : "eager";
 
     const title = document.createElement("span");
     title.className = "work-card__title";
-    title.textContent = project.title;
+    title.textContent = project.title[window.atContent.lang()];
 
     frame.append(image);
     link.append(index, frame, title);
@@ -345,11 +203,6 @@
       return;
     }
 
-    if (link.dataset.projectSlug === "clon") return;
-    if (mobileMode) { event.preventDefault(); return; }
-
-    event.preventDefault();
-
     setActiveCard(link.closest(".work-card"));
   });
 
@@ -377,6 +230,16 @@
     window.requestAnimationFrame(measureAndCenter);
   });
 
-  renderProjects();
-  window.requestAnimationFrame(measureAndCenter);
+  document.addEventListener("at:language", () => {
+    track.querySelectorAll(".work-card").forEach(card => {
+      const project = projects.find(item => item.slug === card.dataset.slug);
+      const lang = window.atContent.lang();
+      card.querySelector(".work-card__title").textContent = project.title[lang];
+      card.querySelector(".work-card__image").alt = `${project.title[lang]} project image`;
+      card.querySelector(".work-card__link").setAttribute("aria-label", `${project.title[lang]}, project ${project.number}`);
+    });
+  });
+  Promise.all(Array.from({ length: 21 }, (_, i) => window.atContent.load(`work/atte-work-${String(i + 1).padStart(2, "0")}/content.json`)))
+    .then(items => { projects = items.sort((a, b) => a.number - b.number); renderProjects(); requestAnimationFrame(measureAndCenter); })
+    .catch(error => console.error("Work content", error));
 })();

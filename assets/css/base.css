@@ -319,8 +319,8 @@ button {
     top:var(--gutter)
   }
   .home-hit-area {
-    top:12vh;
-    bottom:11vh
+    top:0;
+    bottom:0
   }
   .home-cursor {
     display:none

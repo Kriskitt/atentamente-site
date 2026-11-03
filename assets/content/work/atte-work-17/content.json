@@ -1,0 +1,24 @@
+{
+  "id": "atte-work-17",
+  "number": 17,
+  "slug": "estudio-local",
+  "title": {
+    "es": "Estudio Local",
+    "en": "Estudio Local"
+  },
+  "cover": "cover-estudio-local.webp",
+  "description": {
+    "es": "Diseño de campaña para Estudio local.",
+    "en": "Campaign design for Estudio Local."
+  },
+  "media": [
+    "01-estudio-local.webm",
+    "02-estudio-local.webp",
+    "03-estudio-local.webp",
+    "04-estudio-local.webp",
+    "05-estudio-local.webm",
+    "06-estudio-local.webm",
+    "07-estudio-local.webm",
+    "08-estudio-local.webp"
+  ]
+}

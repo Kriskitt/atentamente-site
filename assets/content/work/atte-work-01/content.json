@@ -1,0 +1,31 @@
+{
+  "id": "atte-work-01",
+  "number": 1,
+  "slug": "clon",
+  "title": {
+    "es": "Clon",
+    "en": "Clon"
+  },
+  "cover": "cover-clon.webp",
+  "description": {
+    "es": "El universo visual de clon gira entorno a la oveja Dolly como símbolo de clonación. La oveja es el punto de partida para un imaginario en constante cambio.\nDirección creativa: astro estudio",
+    "en": "Clon’s visual universe revolves around Dolly the sheep, a symbol of cloning. She serves as the starting point for an ever-evolving visual world.\nCreative direction: Astro Estudio"
+  },
+  "media": [
+    "01-clon.webp",
+    "02-clon.webp",
+    "03-clon.webp",
+    "04-clon.webp",
+    "05-clon.webp",
+    "06-clon.webp",
+    "07-clon.webp",
+    "08-clon.webp",
+    "09-clon.webp",
+    "10-clon.webp",
+    "11-clon.webp",
+    "12-clon.webp",
+    "13-clon.webp",
+    "14-clon.webp",
+    "15-clon.webp"
+  ]
+}

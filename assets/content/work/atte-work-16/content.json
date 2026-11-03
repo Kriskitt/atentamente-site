@@ -1,0 +1,22 @@
+{
+  "id": "atte-work-16",
+  "number": 16,
+  "slug": "rito",
+  "title": {
+    "es": "Rito",
+    "en": "Rito"
+  },
+  "cover": "cover-rito.webp",
+  "description": {
+    "es": "Rito café de especialidad en / en desarrollo / Dirección creativa: astro studio",
+    "en": "Rito is a specialty coffee shop. / Status: In development / Creative direction: Astro Studio"
+  },
+  "media": [
+    "01-rito.webm",
+    "02-rito.webp",
+    "03-rito.webp",
+    "04-rito.webm",
+    "05-rito.webp",
+    "06-rito.webm"
+  ]
+}

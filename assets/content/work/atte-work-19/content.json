@@ -1,0 +1,22 @@
+{
+  "id": "atte-work-19",
+  "number": 19,
+  "slug": "clon-en-frina",
+  "title": {
+    "es": "Clon + Frina",
+    "en": "Clon + Frina"
+  },
+  "cover": "cover-clon-en-frina.webp",
+  "description": {
+    "es": "Para la colaboración entre Clon y Frina, de Francesca Ferreyros, desarrollamos una pieza gráfica que fusiona los universos de ambos restaurantes a través del collage.\nDirección creativa: astro studio",
+    "en": "For the collaboration between Clon and Frina, by Francesca Ferreyros, we developed a graphic poster that brings together the visual worlds of both restaurants through collage.\nCreative direction: Astro Studio"
+  },
+  "media": [
+    "01-clon-en-frina.webp",
+    "02-clon-en-frina.webp",
+    "03-clon-en-frina.webp",
+    "04-clon-en-frina.webp",
+    "05-clon-en-frina.webp",
+    "06-clon-en-frina.webp"
+  ]
+}

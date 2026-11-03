@@ -1,0 +1,24 @@
+{
+  "id": "atte-work-12",
+  "number": 12,
+  "slug": "sastre",
+  "title": {
+    "es": "Sastre",
+    "en": "Sastre"
+  },
+  "cover": "cover-sastre.webp",
+  "description": {
+    "es": "Cosmo y Sastre crearon un running club y para su inauguración colaboraron en la creación de una camiseta. Su identidad visual está inspirada en los códigos gráficos del fútbol y las publicaciones deportivas de archivo.",
+    "en": "Cosmo Café and Sastre created a running club and collaborated on a T-shirt to celebrate its launch. The visual identity draws inspiration from the graphic language of football and vintage sports publications."
+  },
+  "media": [
+    "01-sastre.webp",
+    "02-sastre.webp",
+    "03-sastre.webp",
+    "04-sastre.webp",
+    "05-sastre.webp",
+    "06-sastre.webm",
+    "07-sastre.webp",
+    "08-sastre.webp"
+  ]
+}

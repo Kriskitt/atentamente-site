@@ -1,0 +1,16 @@
+{
+  "id": "actions-02",
+  "number": 2,
+  "description": {
+    "es": "Collages que exploran la geometría de la cultura incaica\nFotografías por Cristina Kompanichenko.",
+    "en": "Collages reinterpreting the forms and geometries of the Inca visual world.\nPhotography by Cristina Kompanichenko."  
+  },
+  "media": [
+    "action02-01.webp",
+    "action02-02.webm",
+    "action02-03.webp",
+    "action02-04.webp",
+    "action02-05.webp",
+    "action02-06.webm"
+  ]
+}

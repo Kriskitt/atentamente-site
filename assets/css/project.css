@@ -16,8 +16,10 @@
   margin:0;
   overflow-wrap:anywhere;
   pointer-events:none;
-  text-align:center;
+  text-align:left;
+  font-size:1.3em;
   font-style:normal;
+  white-space:pre-line;
   transform:translateX(-50%)
 }
 .project-gallery {
@@ -26,6 +28,7 @@
   --gallery-gap:10px;
   --closed-height:53.2svh;
   --expanded-width:69.8vw;
+  --expanded-height:calc(100svh - var(--gallery-top) - var(--gallery-bottom));
   --expand-easing:cubic-bezier(.76,0,.24,1);
   --expand-duration:600ms;
   position:fixed;
@@ -33,7 +36,7 @@
   inset:var(--gallery-top) 0 var(--gallery-bottom);
   overflow-x:auto;
   overflow-y:hidden;
-  cursor:grab;
+  cursor:auto;
   overscroll-behavior-x:contain;
   scrollbar-width:none;
   touch-action:pan-x;
@@ -76,7 +79,7 @@
   width:100%;
   height:100%;
   max-width:none;
-  object-fit:cover;
+  object-fit:contain;
   object-position:var(--image-position);
   pointer-events:none;
   user-select:none;
@@ -87,9 +90,9 @@
   outline-offset:-1px
 }
 .project-slide.is-expanded {
-  flex-basis:var(--expanded-width);
-  width:var(--expanded-width);
-  height:calc(100svh - var(--gallery-top) - var(--gallery-bottom));
+  flex-basis:min(var(--expanded-width),calc(var(--expanded-height) * var(--media-ratio,1)));
+  width:min(var(--expanded-width),calc(var(--expanded-height) * var(--media-ratio,1)));
+  height:var(--expanded-height);
   cursor:zoom-out
 }
 @media(max-width:1032px) {
@@ -100,7 +103,8 @@
     --gallery-top:40px;
     --gallery-gap:6px;
     --closed-height:26svh;
-    --expanded-width:82vw
+    --expanded-width:82vw;
+    --expanded-height:44svh
   }
   .project-gallery__track {
     align-items:center
@@ -110,20 +114,21 @@
     width:min(var(--closed-width),48vw)
   }
   .project-slide.is-expanded {
-    flex-basis:var(--expanded-width);
-    width:var(--expanded-width);
-    height:44svh
+    flex-basis:min(var(--expanded-width),calc(var(--expanded-height) * var(--media-ratio,1)));
+    width:min(var(--expanded-width),calc(var(--expanded-height) * var(--media-ratio,1)));
+    height:var(--expanded-height)
   }
 }
 @media(max-width:440px) {
   .project-page {
-    overflow:auto
+    overflow-x:hidden;
+    overflow-y:auto
   }
   .project-header__summary {
     top:34px;
     left:15px;
     width:calc(100vw - 30px);
-    font-size:10px;
+    font-size:13px;
     line-height:1.05;
     text-align:left;
     transform:none
@@ -142,24 +147,23 @@
     gap:10px;
     width:100%;
     height:auto;
-    padding:70px 0 55px
+    padding:var(--mobile-gallery-top,70px) 0 55px
   }
   .project-slide {
     flex:none;
     width:min(49vw,240px);
-    height:180px;
+    height:auto;
+    aspect-ratio:var(--media-ratio,1);
     transition:width var(--expand-duration) var(--expand-easing),height var(--expand-duration) var(--expand-easing)
   }
   .project-slide img,.project-slide video {
-    object-fit:cover
+    object-fit:contain
   }
   .project-slide.is-expanded {
     flex:none;
     width:calc(100vw - 30px);
-    height:70vw
-  }
-  .project-slide:first-child {
-    height:180px
+    height:auto;
+    aspect-ratio:var(--media-ratio,10/7)
   }
 }
 @media(prefers-reduced-motion:reduce) {

@@ -1,0 +1,22 @@
+{
+  "id": "atte-work-15",
+  "number": 15,
+  "slug": "merito",
+  "title": {
+    "es": "Mérito",
+    "en": "Mérito"
+  },
+  "cover": "cover-merito.webp",
+  "description": {
+    "es": "Diseño para el menú degustación de mérito impreso en serigrafia. El diseño está inspirado en las abstracciones de los platos del menú. El papel fue desarrollado por bosques de papel para astro studio. / Diseño de contenido inspirados en los insumos.\nDirección creativa: astro studio",
+    "en": "Design for Mérito’s tasting menu, screen-printed and inspired by visual abstractions of the dishes. The paper was specially developed by Bosques de Papel for Astro Studio. The graphic elements draw inspiration from the ingredients featured in the menu.\nCreative direction: Astro Estudio"
+  },
+  "media": [
+    "01-merito.webp",
+    "02-merito.webp",
+    "03-merito.webp",
+    "04-merito.webp",
+    "05-merito.webp",
+    "06-merito.webp"
+  ]
+}

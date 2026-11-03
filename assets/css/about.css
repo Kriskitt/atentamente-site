@@ -85,6 +85,9 @@
   text-decoration:underline
 }
 @media(max-width:1032px) {
+  .about-column a {
+    text-decoration:underline
+  }
   .about-title-stage {
     pointer-events:auto;
     touch-action:pan-y;

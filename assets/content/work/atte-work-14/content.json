@@ -1,0 +1,22 @@
+{
+  "id": "atte-work-14",
+  "number": 14,
+  "slug": "black-black",
+  "title": {
+    "es": "Black Black",
+    "en": "Black Black"
+  },
+  "cover": "cover-black-black.webp",
+  "description": {
+    "es": "Black Black es un estudio de tatuaje en Split, Croacia con una estética minimalista y artística. Su identidad mantiene una imagen limpia y sobria, donde el tatuaje es el protagonista.",
+    "en": "Black Black is a tattoo studio based in Split, Croatia, with a minimalist and artistic aesthetic. Its visual identity embraces a clean, understated look, allowing the tattoos to take the main role."
+  },
+  "media": [
+    "01-black-black.webp",
+    "02-black-black.webm",
+    "03-black-black.webm",
+    "04-black-black.webp",
+    "05-black-black.webp",
+    "06-black-black.webp"
+  ]
+}

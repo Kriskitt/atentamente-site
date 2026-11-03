@@ -1,0 +1,28 @@
+{
+  "id": "atte-work-09",
+  "number": 9,
+  "slug": "other",
+  "title": {
+    "es": "Other",
+    "en": "Other"
+  },
+  "cover": "cover-other.webp",
+  "description": {
+    "es": "Other es una agencia de representación de creadores de contenido. Creamos el naming y una identidad visual espontánea y personal, además cocreamos junto al equipo la campaña de lanzamiento. Una marca que celebra la autenticidad y las distintas formas de expresarse.",
+    "en": "Other is a talent agency representing content creators. We developed its name and crafted a visual identity that feels spontaneous and personal, while collaborating with the team on its launch campaign. A brand that celebrates authenticity and the many ways people express themselves."
+  },
+  "media": [
+    "01-other.webm",
+    "02-other.webm",
+    "03-other.webm",
+    "04-other.webm",
+    "05-other.webp",
+    "06-other.webm",
+    "07-other.webm",
+    "08-other.webm",
+    "09-other.webp",
+    "10-other.webp",
+    "11-other.webp",
+    "12-other.webm"
+  ]
+}

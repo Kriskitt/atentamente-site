@@ -1,28 +1,21 @@
-(() => {
+(async () => {
   "use strict";
 
   const stage = document.querySelector("[data-home-slider]");
   if (!stage) return;
 
-  const descriptions = [
-    "Atentamente project image on a wooden table",
-    "Atentamente project detail", "Atentamente printed project detail",
-    "Atentamente project image", "Atentamente publication spread",
-    "Atentamente project documentation", "Atentamente project image 7",
-    "Atentamente project image 8", "Atentamente project image 9"
-  ];
-  const desktopFit = new Set([1, 2, 5, 7, 8]);
-  const mobileVideos = new Set([1, 3]);
+  const data = await window.atContent.load("home/content.json");
+  const desktopFit = new Set(["04-home.webp", "06-home.webp", "09-home.webp", "11-home.webp"]);
+  const desktopQuery = matchMedia("(min-width: 1033px)");
   const mobileQuery = matchMedia("(max-width: 440px)");
   const preloadedImages = new Map();
-  const media = descriptions.map((alt, index) => {
-    const number = index + 1;
-    return {
-      alt,
-      desktop: { type: "image", src: `assets/rsc/home/desktop-tablet/home-atte${number}.webp`, fit: desktopFit.has(number) ? "cover" : "contain" },
-      mobile: { type: mobileVideos.has(number) ? "video" : "image", src: `assets/rsc/home/mobile/home-atte${number}.${mobileVideos.has(number) ? "webm" : "webp"}`, fit: "cover" }
-    };
-  });
+  const source = (group, file) => ({ type: file.endsWith(".webm") ? "video" : "image", file,
+    src: window.atContent.url(`home/${data.media[group].path}${file}`) });
+  const media = data.media["desktop-tablet"].files.map((file, index) => ({
+    alt: `Atentamente media ${index + 1}`,
+    desktop: source("desktop-tablet", file),
+    mobile: source("mobile", data.media.mobile.files[index])
+  }));
 
   function populateLayer(layer, slideIndex) {
     const shell = layer.querySelector(".home-media-shell");
@@ -31,7 +24,9 @@
     const source = mobileQuery.matches ? item.mobile : item.desktop;
     const element = document.createElement(source.type === "video" ? "video" : "img");
     element.src = source.src;
-    element.style.setProperty("--media-fit", source.fit);
+    const fit = source.type === "video" ? (mobileQuery.matches ? "cover" : "contain")
+      : (!mobileQuery.matches && desktopQuery.matches && desktopFit.has(source.file) ? "cover" : "contain");
+    element.style.setProperty("--media-fit", fit);
     if (source.type === "video") {
       element.autoplay = true;
       element.muted = true;
@@ -242,6 +237,12 @@
     layers[1 - activeLayer].querySelector("video")?.pause();
     layers[1 - activeLayer].querySelector(".home-media-shell").replaceChildren();
   });
+  desktopQuery.addEventListener("change", () => {
+    if (mobileQuery.matches) return;
+    const element = layers[activeLayer].querySelector(".home-media-shell img, .home-media-shell video");
+    const source = media[index].desktop;
+    if (element) element.style.setProperty("--media-fit", source.type === "image" && desktopQuery.matches && desktopFit.has(source.file) ? "cover" : "contain");
+  });
 
   updateCounter();
-})();
+})().catch(error => console.error("Home content", error));

@@ -1,0 +1,29 @@
+{
+  "id": "atte-work-08",
+  "number": 8,
+  "slug": "fertil",
+  "title": {
+    "es": "Fértil",
+    "en": "Fértil"
+  },
+  "cover": "cover-fertil.webp",
+  "description": {
+    "es": "Fértil es una compañía de producción que cree que las ideas se reproducen y crecen como las células. In Craft We Trust es el manifiesto que la acompaña desde hace diez años. Su identidad debía expresar esa creencia.",
+    "en": "Fértil is a production company built on the belief that ideas grow and multiply, much like cells. In Craft We Trust is the manifesto that has guided the company for the past ten years. Its visual identity brings this belief to life."
+  },
+  "media": [
+    "01-fertil.webm",
+    "02-fertil.webm",
+    "03-fertil.webp",
+    "04-fertil.webm",
+    "05-fertil.webp",
+    "06-fertil.webm",
+    "07-fertil.webm",
+    "08-fertil.webp",
+    "09-fertil.webm",
+    "10-fertil.webm",
+    "11-fertil.webp",
+    "12-fertil.webm",
+    "13-fertil.webm"
+  ]
+}

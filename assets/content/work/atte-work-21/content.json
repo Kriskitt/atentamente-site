@@ -1,0 +1,20 @@
+{
+  "id": "atte-work-21",
+  "number": 21,
+  "slug": "bar-independencia",
+  "title": {
+    "es": "Bar Independencia",
+    "en": "Bar Independencia"
+  },
+  "cover": "cover-bar-independencia.webp",
+  "description": {
+    "es": "Bar Independencia es un espacio para celebrar la libertad sin pretensiones. Diseñamos un logo que se manifiesta en diferentes versiones para expresar la idea de liberarse de lo estático o establecido.",
+    "en": "Bar Independencia is a place to celebrate freedom without pretension. We designed a logo that takes on different forms, embodying the idea of breaking free from convention and the expected."
+  },
+  "media": [
+    "01-bar-independencia.webm",
+    "02-bar-independencia.webp",
+    "03-bar-independencia.webp",
+    "04-bar-independencia.webp"
+  ]
+}

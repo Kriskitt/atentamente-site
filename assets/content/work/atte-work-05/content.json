@@ -1,0 +1,22 @@
+{
+  "id": "atte-work-05",
+  "number": 5,
+  "slug": "at-merito",
+  "title": {
+    "es": "AT + Mérito",
+    "en": "AT + Mérito"
+  },
+  "cover": "cover-at-merito.webp",
+  "description": {
+    "es": "Atsushi Tanaka de AT Restaurant visitó Mérito de Juan Luis Martínez. Para el menú, desarrollamos una serie de abstracciones visuales inspiradas en las formas de los platos cocreados, impresas mediante risografía.\nDirección creativa: astro estudio",
+    "en": "Atsushi Tanaka of AT Restaurant visited Mérito, the restaurant by Juan Luis Martínez. For the menu, we developed a series of visual abstractions inspired by the shapes of the dishes they created together, printed using risograph.\nCreative direction: Astro Estudio"
+  },
+  "media": [
+    "01-at-merito.webp",
+    "02-at-merito.webp",
+    "03-at-merito.webp",
+    "04-at-merito.webp",
+    "05-at-merito.webp",
+    "06-at-merito.webp"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "id": "actions-03",
+  "number": 3,
+  "description": {
+    "es": "Exploración tipográfica, impresa en placa de metal.",
+    "en": "Typographic exploration engraved on metal."
+  },
+  "media": [
+    "action-03-01.webm",
+    "action-03-02.webp",
+    "action-03-03.webm",
+    "action-03-04.webp",
+    "action-03-05.webp"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "atte-work-11",
+  "number": 11,
+  "slug": "three-monkeys",
+  "title": {
+    "es": "Three Monkeys",
+    "en": "Three Monkeys"
+  },
+  "cover": "cover-three-monkeys.webp",
+  "description": {
+    "es": "Three Monkeys es una cafetería de especialidad en Cusco. La identidad visual parte de un lettering manual y orgánico, inspirado en las ramas del cafeto, que junto a las ilustraciones aporta un carácter expresivo a la marca.",
+    "en": "Three Monkeys is a specialty coffee shop in Cusco. Its visual identity is built around hand-drawn, organic lettering inspired by the branches of the coffee plant, complemented by illustrations that bring an expressive character to the brand."
+  },
+  "media": [
+    "01-three-monkeys.webm",
+    "02-three-monkeys.webp",
+    "03-three-monkeys.webp",
+    "04-three-monkeys.webm",
+    "05-three-monkeys.webp"
+  ]
+}

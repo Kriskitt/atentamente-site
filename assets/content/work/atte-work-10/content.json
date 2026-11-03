@@ -1,0 +1,19 @@
+{
+  "id": "atte-work-10",
+  "number": 10,
+  "slug": "rafael-x-ultramarinos",
+  "title": {
+    "es": "Rafael x Ultramarinos",
+    "en": "Rafael x Ultramarinos"
+  },
+  "cover": "cover-rafael-x-ultramarinos.webp",
+  "description": {
+    "es": "Para la colaboración entre Rafael Restaurante y Ultramarinos (México), diseñamos un menú inspirado en el universo marino, utilizando grabados clásicos de Neptuno y referencias al mar impresas en un foil tornasolado.\nDirección creativa: astro studio",
+    "en": "For the collaboration between Rafael Restaurante and Ultramarinos (Mexico), we designed a menu inspired by the world of the ocean, featuring classical engravings of Neptune and other maritime references printed on iridescent foil.\nCreative direction: Astro Estudio"
+  },
+  "media": [
+    "01-rafael-x-ultramarinos.webp",
+    "02-rafael-x-ultramarinos.webm",
+    "03-rafael-x-ultramarinos.webm"
+  ]
+}
