@@ -16,31 +16,47 @@
     desktop: source("desktop-tablet", file),
     mobile: source("mobile", data.media.mobile.files[index])
   }));
+  let blockedVideo = null;
+
+  function playVideo(video) {
+    if (!video || !video.isConnected || document.hidden) return;
+    video.play().then(() => {
+      if (blockedVideo === video) blockedVideo = null;
+    }).catch(error => {
+      if (error.name === "NotAllowedError") blockedVideo = video;
+      else if (error.name !== "AbortError") console.warn("Home video playback", error);
+    });
+  }
 
   function populateLayer(layer, slideIndex) {
     const shell = layer.querySelector(".home-media-shell");
-    shell.querySelector("video")?.pause();
+    const previousVideo = shell.querySelector("video");
+    previousVideo?.pause();
+    if (blockedVideo === previousVideo) blockedVideo = null;
     const item = media[slideIndex];
     const source = mobileQuery.matches ? item.mobile : item.desktop;
     const element = document.createElement(source.type === "video" ? "video" : "img");
-    element.src = source.src;
     const fit = source.type === "video" ? (mobileQuery.matches ? "cover" : "contain")
       : (!mobileQuery.matches && desktopQuery.matches && desktopFit.has(source.file) ? "cover" : "contain");
     element.style.setProperty("--media-fit", fit);
     if (source.type === "video") {
       element.autoplay = true;
       element.muted = true;
+      element.defaultMuted = true;
       element.loop = true;
       element.playsInline = true;
-      element.preload = "metadata";
+      element.setAttribute("playsinline", "");
+      element.controls = false;
+      element.preload = "auto";
       element.setAttribute("aria-label", item.alt);
-      element.play().catch(() => {});
     } else {
       element.alt = item.alt;
       element.decoding = "async";
       element.draggable = false;
     }
+    element.src = source.src;
     shell.replaceChildren(element);
+    return source.type === "video" ? element : null;
   }
 
   function preloadAdjacentImages(slideIndex) {
@@ -84,7 +100,7 @@
   const total = String(media.length).padStart(3, "0");
   const format = number => String(number + 1).padStart(3, "0");
 
-  populateLayer(layers[0], 0);
+  playVideo(populateLayer(layers[0], 0));
   preloadAdjacentImages(0);
 
   function updateCounter() {
@@ -101,8 +117,9 @@
 
     const forward = direction > 0;
 
-    populateLayer(incoming, nextIndex);
+    const incomingVideo = populateLayer(incoming, nextIndex);
     incoming.setAttribute("aria-hidden", "false");
+    playVideo(incomingVideo);
 
     outgoing.style.zIndex = "2";
     incoming.style.zIndex = "3";
@@ -160,7 +177,9 @@
     incoming.style.transformOrigin = "";
 
     outgoing.setAttribute("aria-hidden", "true");
-    outgoing.querySelector("video")?.pause();
+    const outgoingVideo = outgoing.querySelector("video");
+    outgoingVideo?.pause();
+    if (blockedVideo === outgoingVideo) blockedVideo = null;
     outgoing.style.zIndex = "1";
     incoming.style.zIndex = "2";
 
@@ -169,9 +188,18 @@
     preloadAdjacentImages(index);
     if (sourceChangePending) {
       sourceChangePending = false;
-      populateLayer(layers[activeLayer], index);
+      playVideo(populateLayer(layers[activeLayer], index));
     }
   }
+
+  function retryBlockedVideo() {
+    if (blockedVideo?.closest(".home-layer")?.getAttribute("aria-hidden") === "false") {
+      playVideo(blockedVideo);
+    }
+  }
+  document.addEventListener("pointerdown", retryBlockedVideo, { capture: true });
+  document.addEventListener("touchend", retryBlockedVideo, { capture: true });
+  document.addEventListener("keydown", retryBlockedVideo, { capture: true });
 
   document.querySelectorAll(".home-nav-button.prev, .home-hit-area.prev").forEach(element => {
     element.addEventListener("click", () => go(-1));
@@ -232,10 +260,15 @@
 
   mobileQuery.addEventListener("change", () => {
     if (animating) { sourceChangePending = true; return; }
-    populateLayer(layers[activeLayer], index);
+    playVideo(populateLayer(layers[activeLayer], index));
     preloadAdjacentImages(index);
     layers[1 - activeLayer].querySelector("video")?.pause();
     layers[1 - activeLayer].querySelector(".home-media-shell").replaceChildren();
+  });
+  document.addEventListener("visibilitychange", () => {
+    const activeVideo = layers[activeLayer].querySelector("video");
+    if (document.hidden) activeVideo?.pause();
+    else playVideo(activeVideo);
   });
   desktopQuery.addEventListener("change", () => {
     if (mobileQuery.matches) return;

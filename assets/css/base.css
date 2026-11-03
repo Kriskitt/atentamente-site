@@ -45,9 +45,15 @@ body {
   -webkit-font-smoothing:antialiased;
   text-rendering:geometricPrecision
 }
-body[data-polarity="light"] {
+html[data-polarity="light"] {
   --paper:#fff;
   --ink:#000
+}
+html:not([data-content-ready]) .site-header__nav {
+  visibility:hidden
+}
+html:not([data-interface-ready]) .site-footer {
+  visibility:hidden
 }
 img,picture,svg {
   display:block;

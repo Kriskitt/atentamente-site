@@ -48,6 +48,7 @@
     const minScale = 1;
     const maxScale = 30.3;
     const touchViewport = window.matchMedia("(max-width: 1032px)");
+    const tabletViewport = window.matchMedia("(min-width: 441px) and (max-width: 1032px)");
     let lastPointerX = null;
     let currentScale = 1;
     let touchMaxScale = maxScale;
@@ -95,7 +96,7 @@
       scaleFrame = 0;
       if (!touchViewport.matches) return;
       const distance = Math.max(1, stage.clientHeight * 1.5);
-      const progress = Math.min(1, Math.max(0, window.scrollY * 2 / distance));
+      const progress = Math.min(1, Math.max(0, window.scrollY * (tabletViewport.matches ? 1 : 2) / distance));
       setScale(1 + progress * (touchMaxScale - 1));
     }
 
