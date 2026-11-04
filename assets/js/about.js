@@ -17,7 +17,7 @@
         wrapper.className = "about-column";
         column.sections.forEach(section => {
           const heading = document.createElement("h2");
-          heading.textContent = section.heading[lang];
+          heading.textContent = section.heading[lang].toLocaleLowerCase(lang).replace(/^\p{L}/u, letter => letter.toLocaleUpperCase(lang));
           const body = document.createElement("p");
           section.items.forEach((item, index) => {
             if (index) body.append(document.createElement("br"));

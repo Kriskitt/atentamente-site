@@ -13,26 +13,52 @@
   <meta name="robots" content="noindex">
   <meta name="theme-color" content="#000000">
   <title>404 — Atentamente</title>
+  <script>
+    const projectRoot = location.pathname.includes("/atentamente-site/") ? "/atentamente-site/" : "/";
+    const base = document.createElement("base");
+    base.href = projectRoot;
+    document.head.append(base);
+  </script>
   <link rel="icon" href="assets/favicon/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon/favicon-96x96.png">
   <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg">
   <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
   <link rel="manifest" href="assets/favicon/site.webmanifest">
   <link rel="stylesheet" href="assets/css/base.css">
+  <style>
+    html,body{background:#000;color:#fff}
+    .not-found-main{min-height:100dvh;padding:75px var(--gutter) 65px;display:grid;grid-template-columns:minmax(0,46%) minmax(0,1fr);gap:5vw;align-items:center}
+    .not-found-image{display:block;width:auto;max-width:100%;max-height:75dvh;height:auto;object-fit:contain;justify-self:center}
+    .not-found-copy{min-width:0}
+    .not-found-title{margin:0;font-family:var(--serif);font-size:75pt;font-weight:400;line-height:.96;overflow-wrap:anywhere}
+    .not-found-title span{display:block}
+    .not-found-return{display:inline-block;margin-top:26px;font-family:var(--display);font-size:var(--interface-size);font-weight:400;color:inherit;text-decoration:underline;pointer-events:auto}
+    .not-found-footer__brand{font-family:var(--display);font-size:var(--interface-size);font-weight:400;text-decoration:none;pointer-events:auto}
+    @media(max-width:440px){
+      .not-found-page .site-header,.not-found-page .site-footer{justify-content:center}
+      .not-found-brand--right{display:none}
+      .not-found-main{display:flex;flex-direction:column;justify-content:center;align-items:stretch;gap:25px;padding-top:70px;padding-bottom:70px}
+      .not-found-image{max-height:45dvh;align-self:center}
+      .not-found-title{font-size:50pt}
+      .not-found-return{margin-top:20px}
+    }
+  </style>
 </head>
-<body>
+<body class="not-found-page">
 <header class="site-header" aria-label="Site header">
   <a class="site-header__brand" href="./">ATENTAMENTE</a>
-  <nav class="site-header__nav" aria-label="Primary navigation">
-    <a href="work/">Work</a><span aria-hidden="true">,  </span><a href="actions/">Actions</a><span aria-hidden="true">,  </span><a href="about/">About</a>
-  </nav>
+  <a class="site-header__brand not-found-brand--right" href="./">ATENTAMENTE</a>
 </header>
-<main class="route-main" id="main">
-  <h1 class="sr-only">404</h1>
-  <section class="foundation-panel" aria-label="Not found">
-    <p class="foundation-title">404. This page does not exist.</p>
-    <p class="foundation-kicker"><a href="./">Return home</a></p>
-  </section>
+<main class="not-found-main" id="main">
+  <img class="not-found-image" src="assets/content/404.webp" alt="">
+  <div class="not-found-copy">
+    <h1 class="not-found-title"><span>404</span><span>This page doesn’t exist.</span></h1>
+    <a class="not-found-return" href="./">RETURN HOME</a>
+  </div>
 </main>
+<footer class="site-footer" aria-label="Site footer">
+  <a class="not-found-footer__brand" href="./">ATENTAMENTE</a>
+  <a class="not-found-footer__brand not-found-brand--right" href="./">ATENTAMENTE</a>
+</footer>
 </body>
 </html>

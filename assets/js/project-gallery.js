@@ -1,6 +1,26 @@
 (() => {
   "use strict";
 
+  const header = document.querySelector(".project-header");
+  if (header) {
+    const back = document.createElement("a");
+    back.className = "project-header__back";
+    back.href = "../";
+    back.setAttribute("aria-label", "Volver a Work");
+    back.textContent = "←";
+    header.querySelector(".site-header__brand").after(back);
+    back.addEventListener("click", () => {
+      const key = `at:work-return:${new URL(back.href, location.href).pathname}`;
+      try {
+        const state = JSON.parse(sessionStorage.getItem(key));
+        const arrivedFromWork = document.referrer && new URL(document.referrer).pathname === new URL(back.href, location.href).pathname;
+        if (arrivedFromWork && state?.projectSlug === location.pathname.split("/").filter(Boolean).at(-1)) {
+          sessionStorage.setItem(`${key}:pending`, "1");
+        }
+      } catch { /* Direct visits use the ordinary Work link. */ }
+    });
+  }
+
   async function buildGallery(gallery) {
     const id = gallery.dataset.projectId;
     const project = await window.atContent.load(`work/${id}/content.json`);
@@ -49,7 +69,7 @@
       }
       const summary = document.querySelector(".project-header__summary");
       if (summary) summary.textContent = project.description[lang];
-      if (summary) gallery.style.setProperty("--mobile-gallery-top", `${Math.max(70, Math.ceil(summary.getBoundingClientRect().bottom + 10))}px`);
+      if (summary) gallery.style.setProperty("--mobile-gallery-top", `${Math.max(70, Math.ceil(summary.getBoundingClientRect().bottom + 20))}px`);
       if (summary) gallery.style.setProperty("--gallery-top", `${Math.max(innerWidth <= 1032 ? 40 : 98, Math.ceil(summary.getBoundingClientRect().bottom + 12))}px`);
       gallery.setAttribute("aria-label", `${project.title[lang]} gallery`);
       gallery.querySelectorAll(".project-slide").forEach((slide, i) => {
@@ -70,6 +90,7 @@
     if (!track || slides.length === 0) return;
 
     let expandedSlide = null;
+    let selectedSlide = null;
     let pointerIsDown = false;
     let isDragging = false;
     let pointerId = null;
@@ -83,7 +104,7 @@
     function updateSlideLabel(slide, expanded) {
       const index = slides.indexOf(slide) + 1;
       slide.setAttribute("aria-pressed", expanded ? "true" : "false");
-      slide.setAttribute("aria-label", expanded ? `Collapse image ${index}` : `Expand image ${index}`);
+      slide.setAttribute("aria-label", mobileQuery.matches ? `Select media ${index}` : expanded ? `Collapse media ${index}` : `Expand media ${index}`);
     }
 
     function collapseSlide(slide) {
@@ -159,6 +180,19 @@
       }
 
       const clickedSlide = event.target.closest(".project-slide");
+
+      if (mobileQuery.matches) {
+        if (selectedSlide) {
+          selectedSlide.classList.remove("is-selected");
+          selectedSlide.setAttribute("aria-pressed", "false");
+        }
+        if (clickedSlide && clickedSlide !== selectedSlide) {
+          clickedSlide.classList.add("is-selected");
+          clickedSlide.setAttribute("aria-pressed", "true");
+          selectedSlide = clickedSlide;
+        } else selectedSlide = null;
+        return;
+      }
 
       if (clickedSlide) {
         toggleSlide(clickedSlide);
@@ -268,6 +302,13 @@
     }
 
     window.addEventListener("resize", () => {
+      if (mobileQuery.matches && expandedSlide) collapseAllSlides();
+      if (!mobileQuery.matches && selectedSlide) {
+        selectedSlide.classList.remove("is-selected");
+        selectedSlide.setAttribute("aria-pressed", "false");
+        selectedSlide = null;
+      }
+      slides.forEach(slide => updateSlideLabel(slide, slide === expandedSlide || slide === selectedSlide));
       window.requestAnimationFrame(alignInitialSlide);
     });
 

@@ -107,7 +107,7 @@
     videoObserver?.disconnect();
     container.querySelectorAll("video").forEach(video => video.pause());
     container.replaceChildren();
-    if (desktopMode) {
+    if (desktopMode && activeCollection.number === 0) {
       for (let i = 0; i < 3; i += 1) makeBatch();
     } else {
       const grid = document.createElement("div");
@@ -124,7 +124,7 @@
 
   function maintainWindow() {
     scrollFrame = null;
-    if (!desktopMode || !overlay.hidden) return;
+    if (!desktopMode || activeCollection.number !== 0 || !overlay.hidden) return;
     const doc = document.documentElement;
     if (window.scrollY + window.innerHeight > doc.scrollHeight - window.innerHeight * 1.5) makeBatch();
     while (container.children.length > maxBatches) {
@@ -266,6 +266,11 @@
         items: collection.media.map((name, index) => ({ id: `${collection.id}:${index}`, alt: `${collection.id} media ${index + 1}`,
           src: window.atContent.url(`actions/${collection.id}/${name}`), video: name.endsWith(".webm") }))
       }));
+      const firstItems = collections[0].items;
+      for (let i = firstItems.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [firstItems[i], firstItems[j]] = [firstItems[j], firstItems[i]];
+      }
       activeCollection = collections[0]; renderCollection();
     }).catch(error => console.error("Actions content", error));
 })();

@@ -213,53 +213,6 @@
               }
             }
           ]
-        }
-      ]
-    },
-    {
-      "id": "recognitions-talks-press",
-      "sections": [
-        {
-          "id": "recognitions",
-          "heading": {
-            "es": "RECONOCIMIENTOS",
-            "en": "RECOGNITIONS"
-          },
-          "items": [
-            {
-              "text": {
-                "es": "Ganador Bronce LAD 2026 / Categoría Rebranding",
-                "en": "LAD winner 2026 - Bronze / Rebranding category"
-              }
-            },
-            {
-              "text": {
-                "es": "LAD shortlist 2026 (X2)",
-                "en": "LAD shortlist 2026 (X2)"
-              }
-            }
-          ]
-        },
-        {
-          "id": "talks",
-          "heading": {
-            "es": "CHARLAS",
-            "en": "TALKS"
-          },
-          "items": [
-            {
-              "text": {
-                "es": "LAD RADAR",
-                "en": "LAD RADAR"
-              }
-            },
-            {
-              "text": {
-                "es": "Latin american design 2026",
-                "en": "Latin american design 2026"
-              }
-            }
-          ]
         },
         {
           "id": "press",
@@ -342,6 +295,53 @@
                 "en": "IG"
               },
               "href": "https://www.instagram.com/___atentamente/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "recognitions-talks-press",
+      "sections": [
+        {
+          "id": "recognitions",
+          "heading": {
+            "es": "RECONOCIMIENTOS",
+            "en": "RECOGNITIONS"
+          },
+          "items": [
+            {
+              "text": {
+                "es": "Ganador Bronce LAD 2026 / Categoría Rebranding",
+                "en": "LAD winner 2026 - Bronze / Rebranding category"
+              }
+            },
+            {
+              "text": {
+                "es": "LAD SHORTLIST 2026:\n- Three monkeys\n- LA MAR en CLON",
+                "en": "LAD SHORTLIST 2026:\n- Three monkeys\n- LA MAR en CLON"
+              }
+            }
+          ]
+        },
+        {
+          "id": "talks",
+          "heading": {
+            "es": "CHARLAS",
+            "en": "TALKS"
+          },
+          "items": [
+            {
+              "text": {
+                "es": "LAD RADAR",
+                "en": "LAD RADAR"
+              }
+            },
+            {
+              "text": {
+                "es": "Latin american design 2026",
+                "en": "Latin american design 2026"
+              }
             }
           ]
         }

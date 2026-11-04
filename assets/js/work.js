@@ -20,6 +20,28 @@
   let pointerStartY = 0;
   let startingScrollLeft = 0;
   let recenterFrame = null;
+  const returnKey = `at:work-return:${location.pathname}`;
+
+  function restorePosition() {
+    if (sessionStorage.getItem(`${returnKey}:pending`) !== "1") return;
+    sessionStorage.removeItem(`${returnKey}:pending`);
+    let state;
+    try { state = JSON.parse(sessionStorage.getItem(returnKey)); } catch { /* Ignore stale navigation state. */ }
+    sessionStorage.removeItem(returnKey);
+    if (!state) return;
+    const target = Array.from(track.querySelectorAll(`.work-set[data-clone-set="${mobileMode ? 0 : 1}"] .work-card`))
+      .find(card => card.dataset.slug === state.visibleSlug);
+    if (mobileMode) {
+      const restore = () => window.scrollTo(0, state.mobile ? state.scrollY : target?.offsetTop || 0);
+      restore();
+      target?.querySelector("img")?.decode?.().then(restore).catch(restore);
+    } else if (state.mobile || state.viewportWidth !== innerWidth) {
+      if (target) gallery.scrollLeft = target.offsetLeft - (gallery.clientWidth - target.offsetWidth) / 2;
+    } else {
+      gallery.scrollLeft = state.scrollLeft;
+    }
+    if (!mobileMode && innerWidth >= 1033) setActiveCard(target);
+  }
 
   function formatIndex(index) {
     return `( ${index} )`;
@@ -204,6 +226,19 @@
     }
 
     setActiveCard(link.closest(".work-card"));
+    const cards = Array.from(track.querySelectorAll(mobileMode ? '.work-card' : '.work-set[data-clone-set="1"] .work-card'));
+    const center = mobileMode ? innerHeight / 2 : gallery.scrollLeft + gallery.clientWidth / 2;
+    const visible = cards.reduce((nearest, card) => {
+      const distance = mobileMode
+        ? Math.abs(card.getBoundingClientRect().top + card.getBoundingClientRect().height / 2 - center)
+        : Math.abs(card.offsetLeft + card.offsetWidth / 2 - center);
+      return !nearest || distance < nearest.distance ? { card, distance } : nearest;
+    }, null)?.card;
+    sessionStorage.setItem(returnKey, JSON.stringify({
+      scrollLeft: gallery.scrollLeft, scrollY: window.scrollY, mobile: mobileMode,
+      viewportWidth: innerWidth, visibleSlug: visible?.dataset.slug || link.dataset.projectSlug,
+      projectSlug: link.dataset.projectSlug
+    }));
   });
 
   track.addEventListener("pointerenter", event => {
@@ -240,6 +275,6 @@
     });
   });
   Promise.all(Array.from({ length: 21 }, (_, i) => window.atContent.load(`work/atte-work-${String(i + 1).padStart(2, "0")}/content.json`)))
-    .then(items => { projects = items.sort((a, b) => a.number - b.number); renderProjects(); requestAnimationFrame(measureAndCenter); })
+    .then(items => { projects = items.sort((a, b) => a.number - b.number); renderProjects(); requestAnimationFrame(() => { measureAndCenter(); restorePosition(); }); })
     .catch(error => console.error("Work content", error));
 })();

@@ -3,8 +3,8 @@
   "number": 7,
   "slug": "astro",
   "title": {
-    "es": "Astro",
-    "en": "Astro"
+    "es": "Astro Studio",
+    "en": "Astro Studio"
   },
   "cover": "cover-astro.webp",
   "description": {
@@ -14,6 +14,7 @@
   "media": [
     "01-astro.webp",
     "02-astro.webm",
-    "03-astro.webm"
+    "03-astro.webm",
+    "04-astro.webm"
   ]
 }

@@ -5,7 +5,7 @@
   if (!stage) return;
 
   const data = await window.atContent.load("home/content.json");
-  const desktopFit = new Set(["04-home.webp", "06-home.webp", "09-home.webp", "11-home.webp"]);
+  const desktopFit = new Set(["04-home.webp", "06-home.webp", "08-home.webp", "09-home.webp", "10-home.webp"]);
   const desktopQuery = matchMedia("(min-width: 1033px)");
   const mobileQuery = matchMedia("(max-width: 440px)");
   const preloadedImages = new Map();

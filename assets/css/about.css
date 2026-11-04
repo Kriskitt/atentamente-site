@@ -62,7 +62,7 @@
   padding-inline:var(--gutter);
   padding-top:34px;
   font-size:14px;
-  line-height:1.05
+  line-height:1.35
 }
 .about-column {
   min-width:0;
@@ -76,7 +76,8 @@
   line-height:1.1
 }
 .about-column p {
-  margin:0 0 25px
+  margin:0 0 25px;
+  white-space:pre-line
 }
 .about-column a {
   text-decoration:none
@@ -121,7 +122,7 @@
     gap:22px 15px;
     padding-top:40px;
     font-size:10px;
-    line-height:1.12
+    line-height:1.5
   }
   .about-column h2 {
     margin-bottom:9px

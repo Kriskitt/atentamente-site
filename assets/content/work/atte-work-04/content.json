@@ -1,25 +1,24 @@
 {
   "id": "atte-work-04",
   "number": 4,
-  "slug": "ministerio",
+  "slug": "cine-infinito",
   "title": {
-    "es": "Ministerio de la Creatividad",
-    "en": "Ministerio de la Creatividad"
+    "es": "Cine Infinito",
+    "en": "Cine Infinito"
   },
-  "cover": "cover-ministerio.webp",
+  "cover": "cover-cine-infinito.webp",
   "description": {
-    "es": "Ministerio de la Creatividad es una consultora creativa que busca transformar marcas desde una mirada más humana desarrollándose en un terreno digital. Contrastamos  lo institucional de un ministerio con lo disruptivo del mundo creativo.",
-    "en": "Ministerio de la Creatividad is a creative consultancy that aims to transform brands through a more human perspective in the digital space. Its visual identity plays on the contrast between the institutional nature of a ministry and the disruptive spirit of the creative world."
+    "es": "Cine Infinito es una productora peruana de cine de autor enfocada en lo onírico y lo inesperado. Su identidad visual parte de la idea del infinito como una continuidad abierta y en constante movimiento.",
+    "en": "Cine Infinito is a Peruvian film production company dedicated to auteur cinema and drawn to the dreamlike and the unexpected. Its visual identity explores infinity as an open-ended concept, always in motion."
   },
   "media": [
-    "01-ministerio.webm",
-    "02-ministerio.webp",
-    "03-ministerio.webp",
-    "04-ministerio.webm",
-    "05-ministerio.webm",
-    "06-ministerio.webm",
-    "07-ministerio.webp",
-    "08-ministerio.webp",
-    "09-ministerio.webp"
+    "01-cine-infinito.webm",
+    "02-cine-infinito.webm",
+    "03-cine-infinito.webp",
+    "04-cine-infinito.webm",
+    "05-cine-infinito.webm",
+    "06-cine-infinito.webm",
+    "07-cine-infinito.webm"
+
   ]
 }

@@ -32,6 +32,11 @@
 .actions-tab:focus-visible {
   outline:1px solid currentColor
 }
+@media(min-width:1033px) {
+  .actions-tab {
+    font-size:14.3px
+  }
+}
 .actions-subtitle {
   width:min(700px,calc(100% - 30px));
   margin:4px auto 0;
@@ -154,6 +159,14 @@
   }
 }
 @media(max-width:440px) {
+  .actions-tabs {
+    justify-content:space-between;
+    gap:0
+  }
+  .actions-tab,.actions-tab[aria-selected="true"] {
+    min-width:0;
+    font-size:13px
+  }
   .actions-main {
     padding-top:var(--actions-header-bottom,40px)
   }
