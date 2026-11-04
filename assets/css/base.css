@@ -52,9 +52,9 @@ html[data-polarity="light"] {
 html:not([data-content-ready]) .site-header__nav {
   visibility:hidden
 }
-html:not([data-interface-ready]) .site-footer {
-  visibility:hidden
-}
+/*html:not([data-interface-ready]) .site-footer {
+  visibility:hidden;
+}*/
 img,picture,svg {
   display:block;
   max-width:100%
