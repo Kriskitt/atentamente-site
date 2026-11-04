@@ -322,7 +322,8 @@ button {
 @media(max-width:440px) {
   :root { --interface-size:10px; }
   .home-slider-nav {
-    top:var(--gutter)
+    top:auto;
+    bottom:calc(var(--gutter) + env(safe-area-inset-bottom, 0px))
   }
   .home-hit-area {
     top:0;
