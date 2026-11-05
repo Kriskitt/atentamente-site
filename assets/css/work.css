@@ -153,7 +153,7 @@
     top:calc(var(--index-top) + var(--image-offset) + var(--frame-height) + 12px)
   }
 }
-@media(max-width:440px) {
+@media(max-width:500px) {
   .work-page {
     overflow:auto
   }

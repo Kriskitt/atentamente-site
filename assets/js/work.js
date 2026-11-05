@@ -10,7 +10,7 @@
   let projects = [];
 
   const setCount = 3;
-  const mobileQuery = matchMedia("(max-width: 440px)");
+  const mobileQuery = matchMedia("(max-width: 500px)");
   let mobileMode = mobileQuery.matches;
   let setWidth = 0;
   let ignoreClickUntil = 0;
@@ -72,7 +72,7 @@
     const cover = `work/${project.id}/${project.cover}`;
     image.src = window.atContent.url(window.atContent.variant(cover, 1000));
     image.srcset = `${image.src} 1000w, ${window.atContent.url(window.atContent.variant(cover, 2000))} 2000w`;
-    image.sizes = "(max-width: 440px) 50vw, (max-width: 1032px) 26vw, clamp(292px, 15.45vw, 594px)";
+    image.sizes = "(max-width: 500px) 50vw, (max-width: 1032px) 26vw, clamp(292px, 15.45vw, 594px)";
     image.alt = `${project.title[window.atContent.lang()]} project image`;
     image.addEventListener("load", () => { card.dataset.orientation = image.naturalHeight > image.naturalWidth ? "portrait" : "landscape"; });
     image.decoding = "async";

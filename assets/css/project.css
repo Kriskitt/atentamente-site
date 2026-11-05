@@ -139,7 +139,7 @@
     height:var(--expanded-height)
   }
 }
-@media(max-width:440px) {
+@media(max-width:500px) {
   .project-header {
     justify-content:space-between;
     align-items:flex-start

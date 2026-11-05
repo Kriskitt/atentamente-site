@@ -107,7 +107,7 @@
     padding-top:80px
   }
 }
-@media(max-width:440px) {
+@media(max-width:500px) {
   .about-intro {
     padding-top:min(43dvh,410px)
   }

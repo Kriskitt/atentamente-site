@@ -3,7 +3,7 @@
 
   let collections = [];
   const desktopQuery = matchMedia("(min-width: 1033px)");
-  const mobileQuery = matchMedia("(max-width: 440px)");
+  const mobileQuery = matchMedia("(max-width: 500px)");
   const tabs = document.querySelector("[data-actions-tabs]");
   const subtitle = document.querySelector("[data-actions-subtitle]");
   const container = document.querySelector("[data-actions-collections]");
@@ -17,7 +17,7 @@
   function updateIntroTop() {
     const header = document.querySelector(".site-header");
     const main = document.querySelector(".actions-main");
-    if (innerWidth <= 440 && header) main.style.setProperty("--actions-header-bottom", `${Math.ceil(header.getBoundingClientRect().bottom + 12)}px`);
+    if (innerWidth <= 500 && header) main.style.setProperty("--actions-header-bottom", `${Math.ceil(header.getBoundingClientRect().bottom + 12)}px`);
     else main.style.removeProperty("--actions-header-bottom");
   }
   updateIntroTop();

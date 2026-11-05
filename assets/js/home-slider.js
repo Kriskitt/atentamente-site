@@ -7,7 +7,7 @@
   const data = await window.atContent.load("home/content.json");
   const desktopFit = new Set(["04-home.webp", "06-home.webp", "08-home.webp", "09-home.webp", "10-home.webp"]);
   const desktopQuery = matchMedia("(min-width: 1033px)");
-  const mobileQuery = matchMedia("(max-width: 440px)");
+  const mobileQuery = matchMedia("(max-width: 500px)");
   const preloadedImages = new Map();
   const source = (group, file) => ({ type: file.endsWith(".webm") ? "video" : "image", file,
     src: window.atContent.url(`home/${data.media[group].path}${file}`) });
@@ -37,7 +37,7 @@
     const source = mobileQuery.matches ? item.mobile : item.desktop;
     const element = document.createElement(source.type === "video" ? "video" : "img");
     const fit = source.type === "video" ? (mobileQuery.matches ? "cover" : "contain")
-      : (!mobileQuery.matches && desktopQuery.matches && desktopFit.has(source.file) ? "cover" : "contain");
+      : (mobileQuery.matches || (desktopQuery.matches && desktopFit.has(source.file)) ? "cover" : "contain");
     element.style.setProperty("--media-fit", fit);
     if (source.type === "video") {
       element.autoplay = true;

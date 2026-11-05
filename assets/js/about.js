@@ -48,7 +48,7 @@
     const minScale = 1;
     const maxScale = 30.3;
     const touchViewport = window.matchMedia("(max-width: 1032px)");
-    const tabletViewport = window.matchMedia("(min-width: 441px) and (max-width: 1032px)");
+    const tabletViewport = window.matchMedia("(min-width: 501px) and (max-width: 1032px)");
     let lastPointerX = null;
     let currentScale = 1;
     let touchMaxScale = maxScale;

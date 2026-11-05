@@ -46,7 +46,7 @@
       } else {
         element.src = window.atContent.url(window.atContent.variant(root + name, 1000));
         element.srcset = `${element.src} 1000w, ${window.atContent.url(window.atContent.variant(root + name, 2000))} 2000w`;
-        element.sizes = "(max-width: 440px) 100vw, (max-width: 1032px) 82vw, 70vw";
+        element.sizes = "(max-width: 500px) 100vw, (max-width: 1032px) 82vw, 70vw";
         element.loading = "lazy";
         element.decoding = "async";
         element.alt = `${project.title[window.atContent.lang()]} media ${index + 1}`;
@@ -85,7 +85,7 @@
   function initProjectGallery(gallery) {
     const track = gallery.querySelector(".project-gallery__track");
     const slides = Array.from(gallery.querySelectorAll(".project-slide"));
-    const mobileQuery = matchMedia("(max-width: 440px)");
+    const mobileQuery = matchMedia("(max-width: 500px)");
 
     if (!track || slides.length === 0) return;
 

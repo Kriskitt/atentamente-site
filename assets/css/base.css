@@ -319,7 +319,7 @@ button {
     gap:12px
   }
 }
-@media(max-width:440px) {
+@media(max-width:500px) {
   :root { --interface-size:10px; }
   .home-slider-nav {
     top:auto;
