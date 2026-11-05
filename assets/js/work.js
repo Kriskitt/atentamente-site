@@ -6,6 +6,7 @@
 
   if (!gallery || !track) return;
 
+  const canonicalSet = track.querySelector('.work-set');
   let projects = [];
 
   const setCount = 3;
@@ -93,18 +94,35 @@
     const fragment = document.createDocumentFragment();
 
     for (let setIndex = 0; setIndex < (mobileMode ? 1 : setCount); setIndex += 1) {
-      const set = document.createElement("div");
+      const useCanonical = setIndex === (mobileMode ? 0 : 1);
+      const set = useCanonical ? canonicalSet : document.createElement("div");
       set.className = "work-set";
       set.dataset.cloneSet = String(setIndex);
-
-      projects.forEach(project => {
-        set.append(createCard(project, setIndex));
+      if (!useCanonical) projects.forEach(project => set.append(createCard(project, setIndex)));
+      else set.querySelectorAll(".work-card__image").forEach(image => {
+        image.loading = mobileMode ? "lazy" : "eager";
       });
 
       fragment.append(set);
     }
 
-    track.append(fragment);
+    track.replaceChildren(fragment);
+  }
+
+  function enhanceCanonicalCards() {
+    canonicalSet.querySelectorAll(".work-card").forEach(card => {
+      const project = projects.find(item => item.slug === card.dataset.slug);
+      const image = card.querySelector(".work-card__image");
+      const updateOrientation = () => {
+        if (image.naturalWidth) card.dataset.orientation = image.naturalHeight > image.naturalWidth ? "portrait" : "landscape";
+      };
+      image.addEventListener("load", updateOrientation);
+      updateOrientation();
+      const lang = window.atContent.lang();
+      card.querySelector(".work-card__title").textContent = project.title[lang];
+      image.alt = `${project.title[lang]} project image`;
+      card.querySelector(".work-card__link").setAttribute("aria-label", `${project.title[lang]}, project ${project.number}`);
+    });
   }
 
   function measureAndCenter() {
@@ -275,6 +293,6 @@
     });
   });
   Promise.all(Array.from({ length: 21 }, (_, i) => window.atContent.load(`work/atte-work-${String(i + 1).padStart(2, "0")}/content.json`)))
-    .then(items => { projects = items.sort((a, b) => a.number - b.number); renderProjects(); requestAnimationFrame(() => { measureAndCenter(); restorePosition(); }); })
+    .then(items => { projects = items.sort((a, b) => a.number - b.number); enhanceCanonicalCards(); renderProjects(); requestAnimationFrame(() => { measureAndCenter(); restorePosition(); }); })
     .catch(error => console.error("Work content", error));
 })();
